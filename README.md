@@ -9,11 +9,15 @@
   - command line tools `xcode-select --install`
   - iterm
     - import profile iterm-profile.itermcolors
-    - powerlevel9k theme github repo
+    - powerlevel9k(10k) theme github repo
+    - be sure to insall PowerlineFonts - typically use github repo and ./install.sh
   - brew (how-to-geek how to install homebrew) + os dependencies
   - zsh as default `chsh -s /bin/zsh` or `chsh -s /usr/local/bin/zsh` for brew
   - prezto (prezto github repo)
   - vim + vim_runtime + vundle (vimrc repo) `cp config/config.vim ~/.vim_runtime`
+    - install vundle (git clone repo)
+    - vim_runtime/install_awesome_vimrc.sh
+    - Replace config.vim and vundle.vim in my_config.vim from .vimrc
     run `sh ~/.vim_runtime/install_awesome_vimrc.sh` after coying
   - pyenv + relevant python versions 
     - configure .zshrc before to use pyenv init command
@@ -33,6 +37,7 @@
 # brew
   - ack
   - awscli
+  - cmake
   - gcc
   - httpie
   - macvim
