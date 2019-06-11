@@ -8,12 +8,18 @@
   - XCode Update
   - command line tools `xcode-select --install`
   - iterm
-  - brew (how-to-geek how to install homebrew)
+    - import profile iterm-profile.itermcolors
+    - powerlevel9k theme github repo
+  - brew (how-to-geek how to install homebrew) + os dependencies
   - zsh as default `chsh -s /bin/zsh` or `chsh -s /usr/local/bin/zsh` for brew
   - prezto (prezto github repo)
   - vim + vim_runtime + vundle (vimrc repo) `cp config/config.vim ~/.vim_runtime`
     run `sh ~/.vim_runtime/install_awesome_vimrc.sh` after coying
-  - pyenv + relevant python versions (3.6.6 - pip install config/requirements.txt)
+  - pyenv + relevant python versions 
+    - configure .zshrc before to use pyenv init command
+    - pip install --upgrade pip setuptools wheel
+    - pip install -r config/requirements.txt
+  - hicat `npm install -g hicat`
   - docker
 
 # anscillary
@@ -22,7 +28,7 @@
   - spectacle
   - sublime
   - jetbrains ide - intellij (be sure to configure jre)
-  - sdkman + java version
+  - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
 # brew
   - ack
@@ -30,8 +36,10 @@
   - gcc
   - httpie
   - macvim
+  - node
   - pyenv
   - wget
+  - zlib
 
 # browser
   - chrome with timco92@gmail.com
