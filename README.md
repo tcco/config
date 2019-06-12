@@ -64,6 +64,7 @@
 # Git
 git config --global user.name "Tim Co"
 git config --global user.email "timco92@gmail.com"
+git config --global credential.helper osxkeychain
 
 # Reinstall prezto after shit gets fucked up
 
