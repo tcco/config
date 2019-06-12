@@ -31,6 +31,9 @@
   - dash
   - spectacle
   - sublime
+    - symlink subl `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
+    - Install all packages, some may need additional download
+    - Color Highlighter, GitGutter, SublimeLinter
   - jetbrains ide - intellij (be sure to configure jre)
   - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 

@@ -28,6 +28,7 @@ eval "$(pyenv init -)"
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # v
-# cp ~/.rupa/v/v /usr/local/bin
+# cp config/.rupa/v/v ~/bin
 # z
-. ~/.rupa/z/z.sh
+# cp config/.rupa/z/z.sh ~/bin
+. ~/bin/z.sh
