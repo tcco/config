@@ -61,6 +61,10 @@
   - fastest key repeat and delay in keyboard
 
 
+# Git
+git config --global user.name "Tim Co"
+git config --global user.email "timco92@gmail.com"
+
 # Reinstall prezto after shit gets fucked up
 
 cp ~/config/* to root
