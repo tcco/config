@@ -19,7 +19,8 @@ POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 
 
 # Customize to your needs...
-source ~/.env.sh
+source ~/config/.env.sh
+source ~/config/auto-activate-virtualenv.sh
 
 # pyenv
 eval "$(pyenv init -)"
