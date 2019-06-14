@@ -1,0 +1,9 @@
+--ignore-dir=.venv
+--ignore-dir=*.paw
+--ignore-dir=docs
+--ignore-dir=.dynamo
+--ignore-dir=.pants.d
+--ignore-dir=.mypy_cache
+--ignore-dir=.pytest_cache
+--ignore-dir=*.eggs
+--ignore-dir=*.egg-info*
