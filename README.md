@@ -33,7 +33,7 @@
   - sublime
     - symlink subl `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
     - Install all packages, some may need additional download
-    - Color Highlighter, GitGutter, SublimeLinter
+    - Color Highlighter, GitGutter, SublimeLinter, SublimeLinter-flake8
   - jetbrains ide - intellij (be sure to configure jre)
   - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
@@ -81,3 +81,7 @@ Use two configs in this dir (both are hidden)
 ## vim
 pip install requirements
 .vim/bundle/YouCompleteMe/install.py
+
+### Vim Tips for Mappings from plugins
+:nmap
+:nunmap
