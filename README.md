@@ -26,6 +26,7 @@
   - hicat `npm install -g hicat`
   - docker
 
+ 
 # anscillary
   - private internet access
   - dash
@@ -37,17 +38,6 @@
   - jetbrains ide - intellij (be sure to configure jre)
   - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
-# brew
-  - ack
-  - awscli
-  - cmake
-  - gcc
-  - httpie
-  - macvim
-  - node
-  - pyenv
-  - wget
-  - zlib
 
 # browser
   - chrome with timco92@gmail.com

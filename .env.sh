@@ -19,7 +19,7 @@ alias zetc="source etc/devenv.zsh"
 alias setc="source etc/devenv.sh"
 alias cat="hicat"
 alias sleep="pmset sleepnow"
-alias pycache="find . -type d -name __pycache__ -delete"
+alias pycache="find . | grep -E \"(__pycache__|\.pyc|\.pyo$)\" | xargs rm -rf"
 
 ## Git
 ### Log

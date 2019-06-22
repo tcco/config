@@ -1,0 +1,11 @@
+ack
+awscli
+cmake
+gcc
+httpie
+macvim
+node
+pyenv
+tree
+wget
+zlib
