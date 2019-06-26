@@ -7,3 +7,4 @@
 --ignore-dir=.pytest_cache
 --ignore-dir=*.eggs
 --ignore-dir=*.egg-info*
+--ignore-dir=*.tox*
