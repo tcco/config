@@ -45,6 +45,8 @@ npm install (npm-requirements.txt)
 # browser
   - chrome with timco92@gmail.com
   - extensions?
+  - [web search navigator](https://chrome.google.com/webstore/detail/web-search-navigator/cohamjploocgoejdfanacfgkhjkhdkek)
+  - [google results previewer](https://chrome.google.com/webstore/detail/google-results-previewer/mkmjdljkedjpedbceoaaghdmcnipdcjf)
 
 # sys pref
   - energy saver

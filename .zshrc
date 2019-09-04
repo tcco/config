@@ -33,3 +33,11 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 # z
 # cp config/.rupa/z/z.sh ~/bin
 . ~/bin/z.sh
+
+# added by travis gem
+[ -f /Users/timothyco/.travis/travis.sh ] && source /Users/timothyco/.travis/travis.sh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Random
+rm -fr ~/.zcompdump*
