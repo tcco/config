@@ -33,6 +33,8 @@ npm install (npm-requirements.txt)
   - private internet access
   - dash
   - spectacle
+  - miaforgmail
+  - itsycal
   - sublime
     - symlink subl `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
     - Install all packages, some may need additional download
@@ -44,6 +46,7 @@ npm install (npm-requirements.txt)
 
 # browser
   - chrome with timco92@gmail.com
+  - toby tab manager
   - extensions?
   - [web search navigator](https://chrome.google.com/webstore/detail/web-search-navigator/cohamjploocgoejdfanacfgkhjkhdkek)
   - [google results previewer](https://chrome.google.com/webstore/detail/google-results-previewer/mkmjdljkedjpedbceoaaghdmcnipdcjf)
