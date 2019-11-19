@@ -28,8 +28,6 @@ eval "$(pyenv init -)"
 #  sdkman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# flutter
-export PATH"$PATH:~/bin/flutter/bin"
 
 # v
 # cp config/.rupa/v/v ~/bin
@@ -37,9 +35,9 @@ export PATH"$PATH:~/bin/flutter/bin"
 # cp config/.rupa/z/z.sh ~/bin
 . ~/bin/z.sh
 
-# added by travis gem
-[ -f /Users/timothyco/.travis/travis.sh ] && source /Users/timothyco/.travis/travis.sh
-
+# flutter
+export PATH="$PATH:$HOME/bin/flutter/bin"
+# node
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Random
