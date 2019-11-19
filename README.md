@@ -43,6 +43,14 @@ npm install (npm-requirements.txt)
   - jetbrains ide - intellij (be sure to configure jre)
   - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
+# UML
+brew install `plantuml fswatch`
+
+# bin
+Copy `bin` to `~`
+
+# flutter
+Read [getting started](https://flutter.dev/docs/get-started/install/macos)
 
 # browser
   - chrome with timco92@gmail.com

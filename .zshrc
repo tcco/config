@@ -28,6 +28,9 @@ eval "$(pyenv init -)"
 #  sdkman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# flutter
+export PATH"$PATH:~/bin/flutter/bin"
+
 # v
 # cp config/.rupa/v/v ~/bin
 # z
