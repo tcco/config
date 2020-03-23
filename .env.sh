@@ -8,11 +8,16 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 # TODO after cp to ~ directory
 # Alias
 
+# Work Specific
+alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
 ## General
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias geoip="curl http://ip-api.com/json/"
 alias vim="mvim -v"
 # alias pip="pip2"
 # alias python="python2"
+alias createvenv="python -m venv .venv"  # python3
+alias createvirtualenv="python -m virtualenv .venv"  # python2
 alias venv=". .venv/bin/activate"
 alias senv="source .env"
 alias zetc="source etc/devenv.zsh"
