@@ -16,6 +16,7 @@ alias geoip="curl http://ip-api.com/json/"
 alias vim="mvim -v"
 # alias pip="pip2"
 # alias python="python2"
+alias setup-pre-commit="cd .git/hooks/ && ln -s ../../bin/pre-commit . && cd ../../"
 alias createvenv="python -m venv .venv"  # python3
 alias createvirtualenv="python -m virtualenv .venv"  # python2
 alias venv=". .venv/bin/activate"
@@ -72,6 +73,7 @@ alias dimages='docker images'
 alias drmi='docker rmi'
 alias demptyi='docker rmi $(docker images -q --filter "dangling=true")'
 alias demptyif='docker rmi -f $(docker images -q --filter "dangling=true")'
+alias dcleari='docker rmi $(docker images -a -q)'
 
 ### Clear
 alias dclear='demptyc && demptyi'

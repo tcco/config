@@ -22,6 +22,7 @@ let g:gitgutter_enabled=1
 " let g:ale_use_global_executables = 1
 " let g:ale_python_flake8_executable='python3'
 " let g:ale_python_flake8_options='-m flake8'
+let g:black_linelength=120
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=0
 let g:flake8_show_quickfix=1

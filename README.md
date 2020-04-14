@@ -15,7 +15,7 @@
   - zsh as default `chsh -s /bin/zsh` or `chsh -s /usr/local/bin/zsh` for brew
   - prezto (prezto github repo)
   - vim + vim_runtime + vundle (vimrc repo) `cp config/config.vim ~/.vim_runtime`
-    - install vundle (git clone repo)
+    - install vundle [git clone vimrc repo](https://github.com/amix/vimrc)
     - vim_runtime/install_awesome_vimrc.sh
     - Replace config.vim and vundle.vim in my_config.vim from .vimrc
     run `sh ~/.vim_runtime/install_awesome_vimrc.sh` after coying
