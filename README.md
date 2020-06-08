@@ -16,9 +16,9 @@
   - prezto (prezto github repo)
   - vim + vim_runtime + vundle (vimrc repo) `cp config/config.vim ~/.vim_runtime`
     - install vundle [git clone vimrc repo](https://github.com/amix/vimrc)
-    - vim_runtime/install_awesome_vimrc.sh
     - Replace config.vim and vundle.vim in my_config.vim from .vimrc
-    run `sh ~/.vim_runtime/install_awesome_vimrc.sh` after coying
+    - run `sh ~/.vim_runtime/install_awesome_vimrc.sh` after coying
+    - run vim > :PluginInstall
   - pyenv + relevant python versions 
     - configure .zshrc before to use pyenv init command
     - pip install --upgrade pip setuptools wheel
@@ -33,6 +33,7 @@ npm install (npm-requirements.txt)
 Copy `bin` to `~`
 
 # anscillary
+  - istat menu
   - private internet access
   - dash
   - spectacle

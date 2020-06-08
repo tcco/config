@@ -25,7 +25,7 @@ alias zetc="source etc/devenv.zsh"
 alias setc="source etc/devenv.sh"
 alias cat="hicat"
 alias sleep="pmset sleepnow"
-alias pycache="find . | grep -E \"(__pycache__|\.pyc|\.pyo$)\" | xargs rm -rf"
+alias pycache="find . | grep -E \"(__pycache__|\.pyc|\.pytest_cache|\.pyo$)\" | xargs rm -rf"
 
 ## Git
 ### Log
