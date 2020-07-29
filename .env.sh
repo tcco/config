@@ -10,6 +10,8 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # Work Specific
 alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
+alias calogin=~/bin/uplift-pip
+
 ## General
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias geoip="curl http://ip-api.com/json/"
