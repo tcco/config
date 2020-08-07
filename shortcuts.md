@@ -20,7 +20,9 @@ Cmd P for navigation
 
 Multi-cursor
 CMD click
-Ctl shift + directional```
+Ctl shift + directional
+Cmd Shift L to cursor ever line
+```
 
 Vim
 ~~~
