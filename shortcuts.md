@@ -2,17 +2,20 @@ Shortcuts
 --------
 
 GitHub
-~~~~~~~
-```link
+
+```
+link
 w branches
 t file search
 s search
 l line
-b history```
+b history
+```
 
 Sublime
-~~~~~~~
-```Ctrl Cmd J to reformat JSON
+
+```
+Ctrl Cmd J to reformat JSON
 Cmd Shift P for Package Installer
 Cmd Ctl Y Pretty Yaml
 Ctl shift p Mark down preview
@@ -25,27 +28,32 @@ Cmd Shift L to cursor ever line
 ```
 
 Vim
-~~~
-```:%s/foo/bar/g  (c for confirmation)
+
+```
+:%s/foo/bar/g  (c for confirmation)
 :bp previous buffer
 
 Navigate
 CTL O - previous
 CTL I - Next
 
-Alt-up/down for block highlight```
+Alt-up/down for block highlight
+```
 
 Fzf
-~~~
-```Ctl t for new tab
+
+```
+Ctl t for new tab
 Ctl v for vertical split
 Ctl x for horizontal split
 
-Ctl ww to go back and forth```
+Ctl ww to go back and forth
+```
 
 NerdTree
-~~~~~~~~
-```{i}gt  - go to tab in position i
+
+```
+{i}gt  - go to tab in position i
 gt gT tabs
 :q close
 
@@ -60,12 +68,14 @@ cd CD change folder
 t T new tab
 
 C change working dir
-u go up in working dir```
+u go up in working dir
+```
 
 
 PyCharm / IntelliJ
-~~~~~~~~~~~~~~~~~~
-```Alt-Click - Multiple spot selection
+
+```
+Alt-Click - Multiple spot selection
 
 — Closure
 Cmd Shift L load file
@@ -95,16 +105,19 @@ Ctrl -P - Previous Match - cyclic word expansion back (vi)
 
   mypy
     Ctrl - Shift - X Show/hide mypy terminal
-    Ctrl - Shift - M Run mypy linter```
+    Ctrl - Shift - M Run mypy linter
+ ```
 
 
 
 Click colors
-~~~~~~~~~~~~
-```'black', 'red', 'green', 'yellow', 'blue', 'magenta',
+
+```
+'black', 'red', 'green', 'yellow', 'blue', 'magenta',
 'cyan', 'white', 'bright_black', 'bright_red',
 'bright_green', 'bright_yellow', 'bright_blue',
-'bright_magenta', 'bright_cyan', 'bright_white'```
+'bright_magenta', 'bright_cyan', 'bright_white'
+```
 
 
 
