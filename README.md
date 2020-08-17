@@ -42,7 +42,7 @@ Copy `bin` to `~`
   - sublime
     - symlink subl `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
     - Install all packages, some may need additional download
-    - Color Highlighter, GitGutter, SublimeLinter, SublimeLinter-flake8, JavaScriptEnhancements
+    - Color Highlighter, GitGutter, SublimeLinter, SublimeLinter-flake8, SublimeLinter-pydocstyle, JavaScriptEnhancements
     - See https://medium.com/@adrianmcli/setting-up-sublime-text-3-for-reactjs-3bf6baceb73a
   - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
