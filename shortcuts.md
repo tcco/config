@@ -25,6 +25,8 @@ Multi-cursor
 CMD click
 Ctl shift + directional
 Cmd Shift L to cursor ever line
+
+Ctl g - go to line
 ```
 
 Vim
