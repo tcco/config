@@ -39,6 +39,9 @@ Navigate
 CTL O - previous
 CTL I - Next
 
+Ctrl-N - next match - cyclic word expansion (vi)
+Ctrl -P - Previous Match - cyclic word expansion back (vi)
+
 Alt-up/down for block highlight
 ```
 
