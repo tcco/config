@@ -46,6 +46,7 @@ alias gm='git commit -m'
 alias gp='git push'
 alias gpo='git push origin'
 alias gpom='git push origin master'
+alias gpod='git push origin develop'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
 ### Pull
