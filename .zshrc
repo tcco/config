@@ -22,6 +22,15 @@ POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 source ~/config/.env.sh
 source ~/config/auto-activate-virtualenv.sh
 
+# Chalice development e.g. chal 8001
+chal () {
+	port=${1:-8000}
+	original=$(pwd)
+	cd $(dirname `find $original -type d -name ".chalice"`)
+	chalice local --host 0.0.0.0 --port "$port"
+	cd $original
+}
+
 # pyenv
 eval "$(pyenv init -)"
 
