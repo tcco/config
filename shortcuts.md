@@ -43,6 +43,11 @@ Ctrl-N - next match - cyclic word expansion (vi)
 Ctrl -P - Previous Match - cyclic word expansion back (vi)
 
 Alt-up/down for block highlight
+
+Record + Paste
+q<letter>
+<record blurb>
+@<letter>
 ```
 
 Fzf
