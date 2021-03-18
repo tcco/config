@@ -31,6 +31,13 @@ chal () {
 	cd $original
 }
 
+# dotenv cmd helper
+dotenv () {
+	cmd=${1:-cat}
+	original=$(pwd)
+    $cmd $(find $original -type f -name ".env")
+}
+
 # pyenv
 eval "$(pyenv init -)"
 
@@ -50,4 +57,4 @@ export PATH="$PATH:$HOME/bin/flutter/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Random
-rm -fr ~/.zcompdump*
+# rm -rf ~/.zcompdump* 2> /dev/null
