@@ -18,6 +18,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'ambv/black'
+Plugin 'mg979/vim-visual-multi'
 
 " Plugin 'tpope/vim-eunuch'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}

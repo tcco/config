@@ -1,7 +1,6 @@
-Shortcuts
---------
+# Shortcuts
 
-GitHub
+## GitHub
 
 ```
 link
@@ -12,7 +11,7 @@ l line
 b history
 ```
 
-Sublime
+## Sublime
 
 ```
 Ctrl Cmd J to reformat JSON
@@ -26,16 +25,31 @@ CMD click
 Ctl shift + directional
 Cmd Shift L to cursor ever line
 
+Cmd D for multi select
+
 Ctl g - go to line
 ```
 
-Vim
+## Vim
+
+*Map capslock to esc
 
 ```
+~ change case
+S A - append at end of line
+S I - insert at front of line
+
 :%s/foo/bar/g  (c for confirmation)
 :bp previous buffer
 
 Navigate
+gg top of file
+G bottom of file
+H top of screen
+M middle of screen
+L bottom of screen
+% matching parens, bracket etc
+
 CTL O - previous
 CTL I - Next
 
@@ -50,7 +64,31 @@ q<letter>
 @<letter>
 ```
 
-Fzf
+### vim-visual-multi
+[Mappings](https://github.com/mg979/vim-visual-multi/wiki/Mappings)
+
+Basic usage:
+    
+    \\a for select all
+    \\c for case toggle 
+    select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
+    S - <Right/Left> for select part of word
+    create cursors vertically with Ctrl-Down/Ctrl-Up (use number before)
+    select one character at a time with Shift-Arrows
+    press n/N to get next/previous occurrence
+    press [/] to select next/previous cursor
+    press q to skip current and get next occurrence
+    press Q to remove current cursor/selection
+    start insert mode with i,a,I,A
+    tab to switch extend / cursor mode
+
+
+Other:
+
+    vl for visual mode
+    after selection use c for cut
+
+### Fzf
 
 ```
 Ctl t for new tab
@@ -60,7 +98,7 @@ Ctl x for horizontal split
 Ctl ww to go back and forth
 ```
 
-NerdTree
+### NerdTree
 
 ```
 {i}gt  - go to tab in position i
@@ -82,7 +120,7 @@ u go up in working dir
 ```
 
 
-PyCharm / IntelliJ
+## PyCharm / IntelliJ
 
 ```
 Alt-Click - Multiple spot selection

@@ -8,9 +8,10 @@ map ' :NERDTreeToggle<CR>
 map " :Files<CR>
 
 " Other
+set mouse=a
 set completeopt-=preview
 set nofoldenable
-set rtp+=/usr/local/opt/fzf
+# set rtp+=/usr/local/opt/fzf
 set updatetime=100
 " let g:ale_linters = {
 "  'javascript': ['eslint'],
@@ -29,3 +30,11 @@ let g:flake8_show_quickfix=1
 let g:flake8_quickfix_height=3 
 let g:flake8_cmd="/Users/timothyco/.pyenv/shims/flake8"
 autocmd BufWritePost *.py call Flake8()
+" vim-visual-multi
+let g:VM_mouse_mappings = 1
+let g:VM_theme = 'iceblue'
+let g:VM_highlight_matches = 'underline'
+let g:VM_maps = {}
+let g:VM_maps["Undo"] = 'u'
+let g:VM_maps["Redo"] = '<C-r>'
+let g:VM_leader = "\"
