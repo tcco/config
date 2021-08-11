@@ -4,8 +4,10 @@ cmake
 gcc
 httpie
 macvim
+neovim
 node
 pyenv
 tree
+the_silver_searcher
 wget
 zlib
