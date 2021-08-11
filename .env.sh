@@ -15,7 +15,8 @@ alias calogin=~/bin/uplift-pip
 ## General
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias geoip="curl http://ip-api.com/json/"
-alias vim="mvim -v"
+# alias vim="mvim -v"
+alias vim="nvim"
 # alias pip="pip2"
 # alias python="python2"
 alias setup-pre-commit="cd .git/hooks/ && ln -s ../../bin/pre-commit . && cd ../../"
