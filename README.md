@@ -3,7 +3,7 @@
 [Reference](https://sourabhbajaj.com/mac-setup)
 
 
-# New Laptop
+# New Laptop (outdated for vim, vim_runtime, and soon to be prezto/powerline10k)
   - MacOS Update
   - XCode Update
   - command line tools `xcode-select --install`

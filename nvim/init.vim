@@ -1,63 +1,102 @@
-let mapleader = "\<Space>"
+""" Plugins
 
-set nocompatible
-filetype off
-
+" Auto install all desired COC extensions / language servers
 let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint']
 
 call plug#begin()
 
+" prevent modeline from running arbitrary code
 Plug 'ciaranm/securemodelines'
-Plug 'ap/vim-buftabline'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'justinmk/vim-sneak'
 
+" Shows list of all buffers at the top of the window
+Plug 'ap/vim-buftabline'
+
+" File navigation
 Plug 'preservim/nerdtree'
+
+" Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" Multiple cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+" Color styling
 Plug 'chriskempson/base16-vim'
+
+" modeline formatting
 Plug 'itchyny/lightline.vim'
+
+" highlight text when yanked
 Plug 'machakann/vim-highlightedyank'
+
+" Language specific motion to jump between matching text (e.g. parenthesis)
 Plug 'andymass/vim-matchup'
 
+" Set working directory to project root (by .git, Makefile, package.json, etc)
 Plug 'airblade/vim-rooter'
+
+" Use fuzzy finder to search for various things (files, buffers, text, colorschemes, etc)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Code Completion / language server integration
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() } }
 
-Plug 'cespare/vim-toml'
-Plug 'stephpy/vim-yaml'
+" language syntax plugins
 Plug 'vim-python/python-syntax'
-Plug 'rust-lang/rust.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'godlygeek/tabular'
+Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
+
+" Color boxes to preview rgb/hex/etc
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 call plug#end()
 
-colorscheme base16-default-dark
-syntax on
-hi Normal ctermbg=NONE
-set termguicolors
-
-" Installs plugins automatically at startup
+" Install all necessary plugins on startup
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
 
-" Blinking cursor
+""" GUI
+
+" Enable mouse usages in all modes
+set mouse=a
+
+" Remove toolbar
+set guioptions-=T
+
+" Remove beeps
+set vb t_vb=
+
+" set color scheme and enable highlighting
+colorscheme base16-default-dark
+syntax on
+hi Normal ctermbg=NONE
+set termguicolors
+
+" Highlight the symbol at cursor and its references
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Omit ins-completion-menu messages (e.g. --- XXX completion (YYY), match 1 of
+" 2, etc)
+set shortmess+=c
+
+" Set cursor to block in normal+visual+command mode, vertical line in insert
+" mode, and horizontal (under)line in replace mode
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
-" Live preview substitute
-set inccommand=nosplit
+" Only show color preview in web files
+let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json']
 
-" Bottom bar
+" Modeline
+
+set noshowmode  " lightline replaces this functionality
+
 let g:secure_modelines_allowed_items = [
                 \ "textwidth",   "tw",
                 \ "softtabstop", "sts",
@@ -71,6 +110,10 @@ let g:secure_modelines_allowed_items = [
                 \ "colorcolumn"
                 \ ]
 
+function! LightlineFilename()
+  return expand('%:t') !=# '' ? @% : '[No Name]'
+endfunction
+
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -82,117 +125,203 @@ let g:lightline = {
       \ },
       \ }
 
-function! LightlineFilename()
-  return expand('%:t') !=# '' ? @% : '[No Name]'
-endfunction
-
-" Use autocmd to force lightline update.
+" Update the modeline when Coc status/diagnostics change
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-" Completion
-" Better display for messages
-set cmdheight=2
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
 
-" =============================================================================
-" # Editor settings
-" =============================================================================
+""" Editor
 
-" ## Good settings
-filetype plugin indent on
-set autoindent
 set encoding=utf-8
-set scrolloff=2
-set noshowmode
-set hidden
-set wrap
-set nojoinspaces
-set invlist
-set expandtab
 
-set guioptions-=T " Remove toolbar
-set vb t_vb= " No more beeps
-set backspace=2 " Backspace over newlines
-set nofoldenable
-set ttyfast
-" https://github.com/vim/vim/issues/1735#issuecomment-383353563
-set lazyredraw
-set synmaxcol=500
-set laststatus=2
-set relativenumber " Relative line numbers
-set number " Also show current absolute line
-set diffopt+=iwhite " No whitespace in vimdiff
-" Make diffing better: https://vimways.org/2018/the-power-of-diff/
-set diffopt+=algorithm:patience
-set diffopt+=indent-heuristic
-set colorcolumn=100 " and give me a colored column
-set showcmd " Show (partial) command in status line.
-set mouse=a " Enable mouse usage (all modes) in terminals
-set shortmess+=c " don't give |ins-completion-menu| messages.
+" Increase command mode height to 2
+set cmdheight=2
 
-" Show those damn hidden characters
-set listchars=tab:\|\ ,nbsp:¬,extends:»,precedes:«,trail:•
-
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
-set signcolumn=yes
-" remove the ~ for overflowing lines
-set fillchars=eob:\ ,
-
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-autocmd FileType html,css,js,javascript,tsx,typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-" Permanent undo
-set undodir=~/.config/nvim/vimdid
+" Store undo history between instances
 set undofile
+set undodir=~/.config/nvim/vimdid
 
-" Decent wildmenu : command mode listing 
-set wildmenu
-set wildmode=list:longest
-set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+" Leave paste mode when leaving insert mode
+autocmd InsertLeave * set nopaste
 
-" Wrapping options
+" Jump to last edit position when opening a file
+au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" put new splits to the right/below instead of the opposite
+set splitright
+set splitbelow
+
+
+"" Autocompletion
+
+" Intelligently autocomplete on tab
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+" Confirm completion with enter key and break undo chain
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
+endif
+
+
+"" File level
+
+" Load plugin and indent files by filetype
+filetype plugin indent on
+
+" Allow multiple modified files to be open (hidden buffers)
+set hidden
+
+" Don't allow folding code blocks
+set nofoldenable
+
+" Use relative line numbers (except for the current line)
+set relativenumber
+set number
+
+" Wrap long lines so all content is displayed
+set wrap
 set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
 set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
 
-" Proper search
-set incsearch
+" Keep the cursor a couple of line from the top/bottom when scrolling
+set scrolloff=2
+
+" Show hidden characters (tab, nbsp, etc)
+set list
+set listchars=tab:\|\ ,nbsp:¬,extends:»,precedes:«,trail:•
+
+" Remove ~ on 'lines' at the bottom underneath the file
+set fillchars=eob:\ ,
+
+
+"" Line level
+
+" Only highlight the first 200 characters on each line (performance reasons)
+set synmaxcol=200
+
+" Only put one space after punctuation with join commands (e.g. gq, J)
+set nojoinspaces
+
+" Keep indention level when moving to a new line
+set autoindent
+
+" Use proper number of spaces when tabbing
+set expandtab
+
+" Show preview of what a command will do (e.g. substituting text)
+set inccommand=nosplit
+
+" Use 4 spaces for tabs, and 2 for web languages
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+autocmd FileType html,css,javascript,javascriptreact,typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+
+""" Navigation
+
+" Allow backspace to go over indents, newlines, and delete earlier than where
+" insert mode was enabled
+set backspace=indent,eol,start
+
+" Show all tab completion options for command mode
+set wildmenu
+set wildmode=list:longest
+
+" Case insensitive search unless there are capitalized letters
 set ignorecase
 set smartcase
+
+" Substitute all matches by default instead of just one
 set gdefault
 
-" Very magic by default
-nnoremap ? ?\v
-nnoremap / /\v
-cnoremap %s/ %sm/
 
-" Search results centered please
+""" Languages
+
+"" rust
+
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
+
+"" markdown
+
+" Make sure .md files have markdown filetype
+autocmd BufRead *.md set filetype=markdown
+
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_frontmatter = 1
+
+
+""" Misc
+
+" Only wait 300ms to write a swap file
+set updatetime=300
+
+"" Diffing
+
+" Ignore whitespace changes in vimdiff
+set diffopt+=iwhite
+
+" Use better diff algorithm (https://vimways.org/2018/the-power-of-diff/)
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
+
+
+""" Keybindings
+
+let mapleader = "\<Space>"
+
+" General Editor
+
+noremap <C-q> :confirm qall<cr>
+nnoremap <leader>q :bp<cr>:bd #<cr>
+
+# Save
+nmap <leader>w :w<cr>
+
+" Stats
+nnoremap <leader>s g<c-g>
+
+nnoremap <silent> <leader>v :NERDTreeFind<cr>
+
+"" Navigation
+
+" Move by display line (e.g. long line wrapped) unless a count is specified
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+
+" Git
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gp :Git push<cr>
+
+" fzf
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>k :Ag<cr>
+
+" Center each search result as it is focused
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
-
-" =============================================================================
-" # Keyboard shortcuts
-" =============================================================================
-
-noremap <C-q> :confirm qall<cr>
-
-" Remaps
-nnoremap <silent> <leader>v :NERDTreeFind<cr>
-nnoremap <leader>q :bp<cr>:bd #<cr>
-
-nnoremap <leader>gs :Git<cr>
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gp :Git push<cr>
-
-nmap <leader>w :w<cr>
 
 " clear search highlighting on escape
 nnoremap <silent> <esc> :noh<cr><esc>
@@ -201,18 +330,12 @@ nnoremap <silent> <esc> :noh<cr><esc>
 map H ^
 map L $
 
-" copy / paste from system clipboard using <leader>y and <leader>p
+" copy / paste from system clipboard
 noremap <leader>y "+y
 noremap <leader>p "+p
 noremap <leader>P "+P
 
-" 'Smart' navigation
-
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>k :Ag<cr>
-
-" No arrow keys --- force yourself to use the home row
+" Disable arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 inoremap <up> <nop>
@@ -223,26 +346,27 @@ inoremap <right> <nop>
 " Left and right can switch buffers
 nnoremap <left> :bp<cr>
 nnoremap <right> :bn<cr>
+nnoremap <down> :bw<cr>
 
-" Move by display line (e.g. long line wrapped) unless a count is specified
-nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
-nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+"" Coc bindings
 
-"
-" COC
-"
-" Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<cr>
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+nmap <leader>r <Plug>(coc-rename)
+
+" Implement methods for trait
+nnoremap <silent> <leader>i  :call CocActionAsync('codeAction', '', 'Implement missing members')<cr>
+
+" Show actions available at this location
+nnoremap <silent> <leader>a  :CocAction<cr>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -252,60 +376,4 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" learn
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Show actions available at this location
-nnoremap <silent> <leader>a  :CocAction<cr>
-
-" <leader>s shows stats
-nnoremap <leader>s g<c-g>
-
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
-endif
-
-" =============================================================================
-" # Autocommands
-" =============================================================================
-
-" Leave paste mode when leaving insert mode
-autocmd InsertLeave * set nopaste
-
-" Jump to last edit position on opening file
-" https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" Help filetype detection
-autocmd BufRead *.md set filetype=markdown
-autocmd BufRead *.tex set filetype=tex
+nnoremap <silent> K :call <SID>show_documentation()<cr>

@@ -70,3 +70,5 @@ Review keyboard shortcuts
 Split
 :vs
 :hs
+
+lookup ** in init.vim for favs

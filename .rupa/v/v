@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ "$vim" ] || vim=vim
+[ "$vim" ] || vim=nvim
 [ $viminfo ] || viminfo=~/.viminfo
 
 usage="$(basename $0) [-a] [-c] [-l] [-[0-9]] [--debug] [--help] [regexes]"
