@@ -63,4 +63,9 @@ Split
 :vs
 :hs
 
-Look up " learn in init.vim
+
+# Helpful
+
+```
+:set filetype
+```

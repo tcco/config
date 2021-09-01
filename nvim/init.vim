@@ -292,7 +292,7 @@ let mapleader = "\<Space>"
 noremap <C-q> :confirm qall<cr>
 nnoremap <leader>q :bp<cr>:bd #<cr>
 
-# Save
+" Save
 nmap <leader>w :w<cr>
 
 " Stats
@@ -310,6 +310,9 @@ nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <leader>gs :Git<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gp :Git push<cr>
+" + to expand diff, - to (un)stage (or s and u), U to unstage all
+" cc git commit -m , :wq to save out
+" ca git commit --amend
 
 " fzf
 nnoremap <leader>f :Files<cr>
@@ -349,7 +352,8 @@ nnoremap <right> :bn<cr>
 nnoremap <down> :bw<cr>
 
 "" Coc bindings
-
+" :CocLocalConfig to configure locally. Look at coc-settings.json
+"
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
@@ -361,6 +365,7 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 nmap <leader>r <Plug>(coc-rename)
+
 
 " Implement methods for trait
 nnoremap <silent> <leader>i  :call CocActionAsync('codeAction', '', 'Implement missing members')<cr>
