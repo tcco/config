@@ -57,6 +57,13 @@ Look at all commands in init.vim
 save w/o formatting
 :noa w
 
+Local config
+```
+:CocLocalConfig
+
+:CocCommand workspace.showOutput
+```
+
 Fugitive
 
 :G
