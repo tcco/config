@@ -1,6 +1,7 @@
 ack
 awscli
 cmake
+fzf
 gcc
 httpie
 macvim

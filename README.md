@@ -1,8 +1,8 @@
 # Laptop setup
 
-[Reference](https://sourabhbajaj.com/mac-setup)
+[Read this if anything else](https://sourabhbajaj.com/mac-setup)
 
-## New Laptop (outdated for vim, vim_runtime, and soon to be prezto/powerline10k)
+## New Laptop
 
 - MacOS Update
 - XCode Update
@@ -12,26 +12,83 @@
   - powerlevel9k(10k) theme github repo
   - be sure to insall PowerlineFonts - typically use github repo and ./install.sh
 - brew (how-to-geek how to install homebrew) + os dependencies
+  - `$(brew --prefix)/opt/fzf/install` for fzf
+
+## python
+
+pyenv + relevant python versions
+
+- configure .zshrc before to use pyenv init command
+- pip install --upgrade pip setuptools wheel
+- pip install -r config/requirements.txt
+
+## zsh
+
 - zsh as default `chsh -s /bin/zsh` or `chsh -s /usr/local/bin/zsh` for brew
-- prezto (prezto github repo)
-- vim + vim_runtime + vundle (vimrc repo) `cp config/config.vim ~/.vim_runtime`
-  - install vundle [git clone vimrc repo](https://github.com/amix/vimrc)
-  - Replace config.vim and vundle.vim in my_config.vim from .vimrc
-  - run `sh ~/.vim_runtime/install_awesome_vimrc.sh` after coying
-  - run vim > :PluginInstall
-- pyenv + relevant python versions
-  - configure .zshrc before to use pyenv init command
-  - pip install --upgrade pip setuptools wheel
-  - pip install -r config/requirements.txt
-- docker
+
+|Conf|Resource|Notes
+|aliases|[env.sh](zsh/modules/alias.zsh)|shortcuts built up over time|
+|theme|[powerlevel10k](https://github.com/romkatv/powerlevel10k)|pretty|
+
+```zsh
+# First time
+cp zsh/zshrc ~/.zshrc
+mkdir ~/.zsh/plugins
+cp -r zsh/plugins/* ~/.zsh/plugins
+source ~/.zshrc
+
+zsh-download
+
+# after adding plugins & changing config
+zsh-sync
+```
+
+## GH
+
+```zsh
+git config --global user.name "Tim Co"
+git config --global user.email "timco92@gmail.com"
+git config --global credential.helper osxkeychain
+
+git clone https://github.com/tcco/config ~
+
+cp ~/config/.gitignore ~/.gitignore
+```
+
+### search
+
+#### fzf
+
+See `https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh` for usage
+
+`<command e.g. vim, cd, unset> **` for tab completion
+
+`ctl t` for default command
+
+#### ack
+
+```zsh
+cp ackrc ~
+```
+
+## vim
+
+See [nvim.md](nvim/neovim.md) for neovim installation + helpers
+
+### Vim Tips for Mappings from plugins
+
+:nmap
+:nunmap
 
 ## node/npm
-```
+
+``` zsh
 npm install (npm-requirements.txt)
 ```
 
 ## bin
-```
+
+``` zsh
 cp -r bin ~
 ```
 
@@ -43,93 +100,31 @@ cp -r bin ~
 - spectacle
 - miaforgmail
 - itsycal
-- sublime
-  - symlink subl `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
-  - Install all packages, some may need additional download
-  - Color Highlighter, GitGutter, SublimeLinter, SublimeLinter-flake8, SublimeLinter-pydocstyle, JavaScriptEnhancements
-  - See https://medium.com/@adrianmcli/setting-up-sublime-text-3-for-reactjs-3bf6baceb73a
 - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
+### Sublime
 
-## flutter
-Read [getting started](https://flutter.dev/docs/get-started/install/macos)
+[sublime-reqs](./sublime-requirements.txt)
+[medium resource](https://medium.com/@adrianmcli/setting-up-sublime-text-3-for-reactjs-3bf6baceb73a)
 
-# browser
+symlink subl
 
-**switched to firefox**
+```bash
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+```
 
-  - chrome with timco92@gmail.com
-  - toby tab manager
-  - extensions?
-  - [web search navigator](https://chrome.google.com/webstore/detail/web-search-navigator/cohamjploocgoejdfanacfgkhjkhdkek)
-  - [google results previewer](https://chrome.google.com/webstore/detail/google-results-previewer/mkmjdljkedjpedbceoaaghdmcnipdcjf)
+### Bar
 
-# Bar
-  - itsycal
-  - mia for gmail
-  - spectacle
-  - docker
+- itsycal
+- mia for gmail
+- spectacle
+- docker
 
-# sys pref
-  - energy saver
-  - mouse
-  - hot corners
-  - dark theme
-  - fastest key repeat and delay in keyboard
-  - CAPS LOCK as esc for every keyboard
+### sys pref
 
-
-# Git
-git config --global user.name "Tim Co"
-git config --global user.email "timco92@gmail.com"
-git config --global credential.helper osxkeychain
-
-
-# Reinstall prezto after shit gets fucked up
-
-**Need to get rid of prezto go - raw**
-
-cp ~/config/* to root
-
-## .env.sh to root
-
-## zsh 
-zsh as default
-
-Use two configs in this dir (both are hidden)
-
-## vim (replaced by [nvim](nvim/neovim.md)
-pip install requirements
-.vim/bundle/YouCompleteMe/install.py
-
-### Vim Tips for Mappings from plugins
-:nmap
-:nunmap
-
-
-# Don't use any more!
-
-## Pycharm
-
-jetbrains ide - pycharm or intellij (be sure to configure jre)
-
-Plugins:
-- BashSupport
-- CodeGlance
-- Copy and Browse Github
-- Ideavim
-- MaterialUI Theme
-- mypy
-- prettier
-- toml
-- wrap to column
-
-## UML
-brew install `plantuml fswatch`
-	a
-    q:q
-    :q
-
-
-
-:q!
+- energy saver
+- mouse
+- hot corners
+- dark theme
+- fastest key repeat and delay in keyboard
+- CAPS LOCK as esc for every keyboard
