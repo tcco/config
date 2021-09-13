@@ -1,0 +1,8 @@
+if [[ -v PROFILE_ZSH_STARTUP ]]; then zmodload zsh/zprof; fi
+
+for file in $(find ~/.zsh/plugins -name "*.zsh"); do
+  . "$file"
+done
+
+# pyenv
+eval "$(pyenv init -)"

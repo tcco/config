@@ -1,0 +1,11 @@
+**/*.venv
+**/*venv
+
+*.paw
+
+# Mac
+.DS_Store
+
+# Vim
+*.swp
+*.swo
