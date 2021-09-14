@@ -2,8 +2,17 @@ ZSH_HOME=~/.zsh
 ZSH_CONF=~/.zshrc
 
 function zsh-sync() {
+  unalias cp || echo 'hello'
+
+  rm -rf $ZSH_HOME/plugins
+  mkdir $ZSH_HOME/plugins
+
   cp -r ~/config/zsh/plugins/* $ZSH_HOME/plugins/
   cp ~/config/zsh/zshrc $ZSH_CONF
+  
+  cp ~/config/ackrc ~/.ackrc
+  cp -r ~/config/nvim ~/.config
+
   source ~/.zshrc
 }
 
