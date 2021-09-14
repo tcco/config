@@ -22,6 +22,18 @@ pyenv + relevant python versions
 - pip install --upgrade pip setuptools wheel
 - pip install -r config/requirements.txt
 
+## GH
+
+```zsh
+git config --global user.name "Tim Co"
+git config --global user.email "timco92@gmail.com"
+git config --global credential.helper osxkeychain
+
+git clone https://github.com/tcco/config ~
+
+cp ~/config/.gitignore ~/.gitignore
+```
+
 ## zsh
 
 - zsh as default `chsh -s /bin/zsh` or `chsh -s /usr/local/bin/zsh` for brew
@@ -41,18 +53,6 @@ zsh-download
 
 # after adding plugins & changing config
 zsh-sync
-```
-
-## GH
-
-```zsh
-git config --global user.name "Tim Co"
-git config --global user.email "timco92@gmail.com"
-git config --global credential.helper osxkeychain
-
-git clone https://github.com/tcco/config ~
-
-cp ~/config/.gitignore ~/.gitignore
 ```
 
 ### search

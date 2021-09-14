@@ -48,18 +48,20 @@ else
   bindkey -M emacs "^[3;5~" delete-char
 fi
 
-# [Ctrl-Backspace] - delete whole backward-work
-bindkey -M emacs '^H' backward-kill-word
-# [Ctrl-Delete] - delete whole forward-word
-bindkey -M emacs '^[[3;5~' kill-word
-
+# ^A beg of line
+# ^E end of line
+# ^J accept line
+# ^U kill line
 # [Ctrl-RightArrow] - move forward one word
 bindkey -M emacs '^[[1;5C' forward-word
+bindkey -M emacs '^L' forward-word
 # [Ctrl-LeftArrow] - move backward one word
 bindkey -M emacs '^[[1;5D' backward-word
+bindkey -M emacs '^H' backward-word
+bindkey -M emacs '^W' backward-kill-word
+bindkey -M emacs '^Q' kill-word
+bindkey -M emacs '^K' kill-region
 
-
-bindkey '^W' kill-region                             # [Ctrl-w] - Kill from the cursor to the mark
 # bindkey '^R' history-incremental-search-backward   # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey ' ' magic-space                              # [Space] - don't do history expansion
 

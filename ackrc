@@ -1,3 +1,4 @@
+--ignore-dir=.github
 --ignore-dir=.venv
 --ignore-dir=*.paw
 --ignore-dir=docs
