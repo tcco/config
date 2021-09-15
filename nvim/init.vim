@@ -309,6 +309,7 @@ nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 " Git
 nnoremap <leader>gs :Git<cr>
 nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gb :Git blame<cr>
 nnoremap <leader>gp :Git push<cr>
 " + to expand diff, - to (un)stage (or s and u), U to unstage all
 " cc git commit -m , :wq to save out
