@@ -11,7 +11,8 @@
     "typescript",
     "typescriptreact",
     "css",
-    "json"
+    "json",
+    "sol"
   ],
   "prettier.disableLanguages": ["html"],
   "prettier.singleQuote": true,
