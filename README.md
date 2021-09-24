@@ -94,12 +94,8 @@ cp -r bin ~
 
 ## anscillary
 
-- istat menu
-- private internet access
+- discord
 - dash
-- spectacle
-- miaforgmail
-- itsycal
 - sdkman + java version `curl -s "https://get.sdkman.io" | bash`
 
 ### Sublime
@@ -119,6 +115,8 @@ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/sub
 - mia for gmail
 - spectacle
 - docker
+- istat menu
+- private internet access
 
 ### sys pref
 
