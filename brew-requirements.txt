@@ -13,3 +13,6 @@ tree
 the_silver_searcher
 wget
 zlib
+
+cocoapods
+carthage

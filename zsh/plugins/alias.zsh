@@ -30,6 +30,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 ## Git
+### branch
+alias gb='git branch'
 ### Log
 alias gl='git log'
 alias glp='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
