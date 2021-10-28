@@ -1,0 +1,32 @@
+vars_files:
+- vars/common.yml
+- vars/nvim.yml
+- vars/zsh.yml
+
+tasks:
+- include: tasks/debug.yml
+  tags: [system, debug]
+
+- name: Install zsh plugins
+  copy:
+    src: files/zsh/plugins
+    dest: "{{ zsh_plugins_dir }}"
+
+- name: Install ackrc 
+  copy:
+    src: files/ackrc
+    dest: "{{ homedir }}/.ackrc"
+
+- name: Install nvim
+  copy:
+    src: files/nvim
+    dest: "{{ nvim_home_dir }}"
+
+- name: Install zshrc
+  copy:
+    src: files/zsh/zshrc
+    dest: "{{ zsh_rc_file }}"
+
+      # - name: Source zshrc
+      #   command:
+      #     command: . ."{{ zsh_rc_file }}"

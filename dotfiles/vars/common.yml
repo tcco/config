@@ -1,0 +1,8 @@
+hostname: timothyco-workstation
+username: timothyco
+homedir: "/Users/{{ username }}"
+
+kernel: macos
+
+autolock_timeout: 30
+dpi: 75
