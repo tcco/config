@@ -1,0 +1,6 @@
+- name: Debug system
+  debug: "Kernel={{ kernel }} Username={{ username }} Hostname={{ hostname }}"
+- name: Debug nvim 
+  debug: "Home={{ nvm_home_dir }}"
+- name: Debug zsh
+  debug: "Plugins={{ zsh_plugins_dir }} RC={{ zsh_rc_file }}"
