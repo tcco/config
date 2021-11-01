@@ -1,1 +1,1 @@
-nvm_home_dir: "{{ homedir }}/.config"
+nvim_home_dir: "{{ homedir }}/.config/nvim"

@@ -7,26 +7,17 @@ tasks:
 - include: tasks/debug.yml
   tags: [system, debug]
 
-- name: Install zsh plugins
-  copy:
-    src: files/zsh/plugins
-    dest: "{{ zsh_plugins_dir }}"
 
-- name: Install ackrc 
-  copy:
-    src: files/ackrc
-    dest: "{{ homedir }}/.ackrc"
+- include: tasks/brew.yml
+  tags: [system, brew]
 
-- name: Install nvim
-  copy:
-    src: files/nvim
-    dest: "{{ nvim_home_dir }}"
+- include: tasks/git.yml
+  tags: [dev, git]
 
-- name: Install zshrc
-  copy:
-    src: files/zsh/zshrc
-    dest: "{{ zsh_rc_file }}"
+- include: tasks/zsh.yml
+  tags: [term, zsh]
+- include: tasks/ack.yml
+  tags: [term, ack]
+- include: tasks/nvim.yml
+  tags: [term, nvim]
 
-      # - name: Source zshrc
-      #   command:
-      #     command: . ."{{ zsh_rc_file }}"

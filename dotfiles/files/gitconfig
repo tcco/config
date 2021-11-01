@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Timothy  Co
+#	email = timothyco@Timothys-MacBook-Pro.local
+[user]
+	name = Tim Co
+	email = timco92@gmail.com
+[credential]
+	helper = osxkeychain
+[pull]
+	rebase = false

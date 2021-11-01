@@ -1,0 +1,9 @@
+
+- name: Debug nvim 
+  debug: "nvim_home_dir={{ nvim_home_dir }}"
+
+- name: Install nvim
+  copy:
+    src: files/nvim
+    dest: "{{ nvim_home_dir }}"
+
