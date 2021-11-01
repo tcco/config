@@ -1,0 +1,15 @@
+- name: Copy gitignore
+  copy:
+    src: files/gitignore
+    dest: "{{ homedir}}/.gitignore"
+    owner: "{{ username }}"
+    group: "staff"
+    mode: 0644
+
+- name: Copy gitconfig
+  copy:
+    src: files/gitconfig
+    dest: "{{ homedir}}/.gitconfig"
+    owner: "{{ username }}"
+    group: "staff"
+    mode: 0644

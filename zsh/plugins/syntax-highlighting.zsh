@@ -1,1 +1,1 @@
-. ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+. ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh

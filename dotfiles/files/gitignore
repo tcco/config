@@ -1,0 +1,15 @@
+__pycache__/
+*.egg-info/
+.env
+.venv
+.tox/
+.coverage
+.coverage.*
+coverage.xml
+*.egg-info/
+dist/
+\#*\#
+
+node_modules
+
+.DS_Store
