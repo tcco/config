@@ -1,4 +1,6 @@
 black
+cookiecutter
 flake8
-pylint
 instater
+poetry
+pylint

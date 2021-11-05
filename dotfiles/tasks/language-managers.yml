@@ -1,0 +1,11 @@
+- name: Install pyenv
+  command:
+    command: brew install pyenv
+    condition: pyenv --version
+    condition_code: 1
+
+      # - name: Install sdkman
+      #   command:
+      #     command:
+      #       - curl -s "https://get.sdkman.io"
+      #       - bash

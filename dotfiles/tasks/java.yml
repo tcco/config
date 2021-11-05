@@ -1,0 +1,7 @@
+- name: Install sdkman
+  command:
+    command:
+      - curl -s "https://get.sdkman.io" -o /tmp/sdkman.sh
+      - bash /tmp/sdkman.sh
+    condition: ls "{{ homedir }}/.sdkman"
+    condition_code: 1
