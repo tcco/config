@@ -1,2 +1,2 @@
 - name: Debug system
-  debug: "kernel={{ kernel }} username={{ username }} homedir={{ homedir }}"
+  debug: "kernel={{ kernel }} username={{ username }} homedir={{ homedir }} configdir== {{ configdir }}"

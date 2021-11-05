@@ -7,12 +7,17 @@ tasks:
 - include: tasks/debug.yml
   tags: [system, debug]
 
-
-- include: tasks/brew.yml
-  tags: [system, brew]
+- include: tasks/os-setup.yml
+  tags: [system, os-setup]
 
 - include: tasks/git.yml
   tags: [dev, git]
+- include: tasks/python.yml
+  tags: [dev, python]
+- include: tasks/java.yml
+  tags: [dev, java]
+- include: tasks/javascript.yml
+  tags: [dev, javascript]
 
 - include: tasks/zsh.yml
   tags: [term, zsh]

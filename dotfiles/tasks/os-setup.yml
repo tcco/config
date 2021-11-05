@@ -1,0 +1,16 @@
+- name: Install xcode
+  command: 
+    command: sudo xcode-select --install
+    condition: xcode-select -p
+    condition_code: 1
+
+- name: Install brew
+  command: 
+    command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    condition: which brew
+    condition_code: 1
+
+- name: Brew requiements
+  command:
+    command: brew install $(cat "{{ configdir }}/brew-requirements.txt")
+    when: brew_install
