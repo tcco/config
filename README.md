@@ -44,6 +44,7 @@ See [nvim.md](dotfiles/files/nvim/neovim.md) for neovim installation + helpers
 
 - discord
 - dash
+- docker
 - notion
 - sublime
 
