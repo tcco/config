@@ -1,0 +1,4 @@
+- name: Copy bin dir
+  copy:
+    src: files/bin
+    dest: "{{ homedir }}/bin"

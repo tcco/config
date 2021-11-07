@@ -9,6 +9,8 @@ tasks:
 
 - include: tasks/os-setup.yml
   tags: [system, os-setup]
+- include: tasks/bin.yml
+  tags: [system, bin]
 
 - include: tasks/git.yml
   tags: [dev, git]
