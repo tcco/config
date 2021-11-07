@@ -12,5 +12,5 @@
 
 - name: Brew requiements
   command:
-    command: brew install $(cat "{{ configdir }}/brew-requirements.txt")
+    command: brew install $(cat "{{ configdir }}/requirements/brew.txt")
     when: brew_install

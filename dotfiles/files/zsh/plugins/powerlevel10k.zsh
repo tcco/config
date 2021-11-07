@@ -12,3 +12,5 @@ ZLE_RPROMPT_INDENT=0
 if [[ $TERM != "linux" ]]; then
   source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 fi
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet

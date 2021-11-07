@@ -3,10 +3,3 @@ if [[ -v PROFILE_ZSH_STARTUP ]]; then zmodload zsh/zprof; fi
 for file in $(find ~/.zsh/plugins -name "*.zsh"); do
   . "$file"
 done
-
-# pyenv
-eval "$(pyenv init -)"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

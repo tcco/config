@@ -5,5 +5,5 @@
     condition_code: 1
 
 - name: Install python packages
-  command: pip install -r "{{ configdir }}/requirements.txt"
+  command: pip install -r "{{ configdir }}/requirements/python.txt"
   when: python_install
