@@ -7,6 +7,10 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 # allow square brackets without quotes in pip commands
 alias pip="noglob pip"
 
+
+eval "$(pyenv init -)"
+export PATH="$HOME/.poetry/bin:$PATH"
+
 # function cd() {
 #   builtin cd "$@" || return 1
 # 
