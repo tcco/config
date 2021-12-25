@@ -20,6 +20,8 @@ tasks:
   tags: [dev, java]
 - include: tasks/javascript.yml
   tags: [dev, javascript]
+- include: tasks/rust.yml
+  tags: [dev, rust]
 
 - include: tasks/zsh.yml
   tags: [term, zsh]
