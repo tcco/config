@@ -1,0 +1,5 @@
+- name: Install rust
+  command:
+    command: brew install rustup  && rustup-init
+    condition: rustc --version
+    condition_code: 1

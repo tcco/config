@@ -7,7 +7,7 @@ From `dotfiles` folder path
 ```
 instater  --dry-run
 instater
-
+instater --tags dev,rust
 instater --vars 'python_install=true; brew_install=true; javascript_install=true'
 ```
 
