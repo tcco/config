@@ -1,13 +1,13 @@
 - name: Install pyenv
   command:
     command: brew install pyenv
-    condition: pyenv --version
+    condition: which pyenv
     condition_code: 1
 
 - name: Install poetry
   command:
     command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-    condition: poetry --version
+    condition: which poetry
     condition_code: 1
 
 - name: Install python packages

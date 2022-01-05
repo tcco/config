@@ -52,6 +52,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
 
 " Color boxes to preview rgb/hex/etc
+" Likely need to install go https://go.dev/doc/install
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 call plug#end()
