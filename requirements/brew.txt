@@ -3,6 +3,7 @@ awscli
 cmake
 fzf
 gcc
+gdb
 gh
 httpie
 macvim
