@@ -44,12 +44,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() } }
 
 " language syntax plugins
-Plug 'vim-python/python-syntax'
-Plug 'leafgarland/typescript-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
+Plug 'sheerun/vim-polyglot'
+" Plug 'vim-python/python-syntax'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'rust-lang/rust.vim'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'stephpy/vim-yaml'
+" Plug 'cespare/vim-toml'
 
 " Color boxes to preview rgb/hex/etc
 " Likely need to install go https://go.dev/doc/install
