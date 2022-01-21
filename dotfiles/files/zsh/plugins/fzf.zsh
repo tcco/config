@@ -11,3 +11,6 @@ fi
 # Key bindings
 # ------------
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# Default command
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git/ --ignore node_modules/ -g ""'
