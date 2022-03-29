@@ -1,4 +1,4 @@
 username: timothyco
 homedir: "/Users/{{ username }}"
-configdif: "/Users/{{ username }}/config"
+configdir: "/Users/{{ username }}/config"
 kernel: macos

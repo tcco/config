@@ -13,3 +13,7 @@
 - name: Install python packages
   command: pip install -r "{{ configdir }}/requirements/python.txt"
   when: python_install
+
+- name: Remove python packages for env
+  command: pip freeze > unins && pip uninstall -y -r unins && rm -f unins
+  when: python_uninstall
