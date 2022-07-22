@@ -3,3 +3,10 @@
     command: brew tap hashicorp/tap  && brew iinstall hashicorp/tap/terraform
     condition: which terraform
     condition_code: 1
+
+
+- name: Install terraform-ls
+  command:
+    command: brew install hashicorp/tap/terraform-ls
+    condition: which terraform-ls
+    condition_code: 1
