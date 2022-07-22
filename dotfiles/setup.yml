@@ -22,6 +22,8 @@ tasks:
   tags: [dev, javascript]
 - include: tasks/rust.yml
   tags: [dev, rust]
+- include: tasks/terraform.yml
+  tags: [dev, terraform]
 
 - include: tasks/zsh.yml
   tags: [term, zsh]
