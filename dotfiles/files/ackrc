@@ -13,3 +13,4 @@
 --ignore-dir=.aws-sam
 --ignore-dir=.idea
 --ignore-dir=.batch
+--ignore-dir=.terraform
