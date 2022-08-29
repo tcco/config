@@ -2,5 +2,5 @@ black
 cookiecutter
 flake8
 instater
-poetry
+# poetry
 pylint
