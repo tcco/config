@@ -11,58 +11,42 @@ alias pip="noglob pip"
 eval "$(pyenv init -)"
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# function cd() {
-#   builtin cd "$@" || return 1
-# 
-#   if [[ -n "$VIRTUAL_ENV" ]] ; then
-#     project_name="$(basename "$VIRTUAL_ENV")"
-#     if [[ "$PWD" != *"$project_name"* ]] ; then
-#       deactivate
-#     else
-#     fi
-#   fi
-# 
-#   if [[ -z "$VIRTUAL_ENV" ]] && [[ $PWD != "/" ]]; then
-#       venv_dir="$HOME/.venvs/$(basename $PWD)"
-#       if [[ -d "$venv_dir" ]] ; then
-#         source "$venv_dir/bin/activate"
-#       fi
-#   fi
-# }
+function cd() {
+  builtin cd "$@" || return 1
+
+  if [[ -n "$VIRTUAL_ENV" ]] ; then
+    project_name="$(basename "$VIRTUAL_ENV")"
+    if [[ "$PWD" != *"$project_name"* ]] ; then
+      deactivate
+    else
+    fi
+  fi
+
+  if [[ -z "$VIRTUAL_ENV" ]] && [[ $PWD != "/" ]]; then
+      venv_dir="$HOME/.venvs/$(basename $PWD)"
+      if [[ -d "$venv_dir" ]] ; then
+        source "$venv_dir/bin/activate"
+      fi
+  fi
+}
 
 function revenv() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
     deactivate || return 1
   fi
 
-  # venv_dir="$HOME/.venvs/$(basename $PWD)"
-  venv_dir=".venv"
+  venv_dir="$HOME/.venvs/$(basename $PWD)"
 
-  if [[ ! -d "$venv_dir" ]]; then
-    # rm -rf "$venv_dir" || return 1
-    python3 -m venv "$venv_dir" || return 1
+  if [[ -d "$venv_dir" ]]; then
+    rm -rf "$venv_dir" || return 1
   fi
 
+  python3 -m venv "$venv_dir" || return 1
   . "$venv_dir/bin/activate" || return 1
 
   pip install --upgrade pip
   pip install -e ".[dev]" || return 1
 }
-
-# function venv() {
-#   if [[ -n "$VIRTUAL_ENV" ]]; then
-#     deactivate || return 1
-#   fi
-# 
-#   venv_dir="$HOME/.venvs/$(basename $PWD)"
-# 
-#   if [[ -d "$venv_dir" ]]; then
-#     rm -rf "$venv_dir" || return 1
-#   fi
-# 
-#   python3 -m venv "$venv_dir" || return 1
-#   . "$venv_dir/bin/activate" || return 1
-# }
 
 function chal () {
   port=${1:-8000}

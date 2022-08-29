@@ -33,17 +33,17 @@ else
 fi
 
 function _virtualenv_auto_activate() {
-    if [ -e ".venv" ]; then
+    if [ -e "$HOME/.venvs/$(basename $PWD)" ]; then
         # Check for symlink pointing to virtualenv
-        if [ -L ".venv" ]; then
+        if [ -L "$HOME/.venvs/$(basename $PWD)" ]; then
           _VENV_PATH=$(readlink .venv)
           _VENV_WRAPPER_ACTIVATE=false
         # Check for directory containing virtualenv
-        elif [ -d ".venv" ]; then
+        elif [ -d "$HOME/.venvs/$(basename $PWD)" ]; then
           _VENV_PATH=$(pwd -P)/.venv
           _VENV_WRAPPER_ACTIVATE=false
         # Check for file containing name of virtualenv
-        elif [ -f ".venv" -a $VENV_WRAPPER = "true" ]; then
+        elif [ -f "$HOME/.venvs/$(basename $PWD)" -a $VENV_WRAPPER = "true" ]; then
           _VENV_PATH=$WORKON_HOME/$(cat .venv)
           _VENV_WRAPPER_ACTIVATE=true
         else
@@ -58,7 +58,7 @@ function _virtualenv_auto_activate() {
             else
               _VENV_NAME=$(basename `pwd`)
               VIRTUAL_ENV_DISABLE_PROMPT=1
-              source .venv/bin/activate
+              source "$HOME/.venvs/$(basename $PWD)"/bin/activate
               _OLD_VIRTUAL_PS1="$PS1"
               PS1="($_VENV_NAME)$PS1"
               export PS1
