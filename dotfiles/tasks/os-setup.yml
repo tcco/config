@@ -6,7 +6,7 @@
 
 - name: Install brew
   command: 
-    command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     condition: which brew
     condition_code: 1
 
