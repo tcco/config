@@ -8,6 +8,9 @@
     src: files/zsh/zshrc
     dest: "{{ zsh_rc_file }}"
 
+- name: Wipe zsh plugins
+  command: 'rm -rf "{{ zsh_plugins_dir }}"'
+
 - name: Install zsh plugins
   copy:
     src: files/zsh/plugins
@@ -18,15 +21,18 @@
     repo: https://github.com/romkatv/powerlevel10k
     dest: "{{ zsh_home_dir }}/powerlevel10k"
     depth: 1
+  when: zsh_install
 
 - name: Install zsh-autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: "{{ zsh_home_dir }}/zsh-autosuggestions"
     depth: 1
+  when: zsh_install
 
 - name: Install zsh-syntax-highlighting
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting
     dest: "{{ zsh_home_dir }}/zsh-syntax-highlighting"
     depth: 1
+  when: zsh_install
