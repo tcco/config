@@ -9,6 +9,7 @@ httpie
 macvim
 neovim
 node
+postgresql
 pyenv
 tree
 the_silver_searcher
