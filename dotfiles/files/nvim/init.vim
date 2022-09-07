@@ -5,6 +5,9 @@ let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-ht
 
 call plug#begin()
 
+" Write your code
+Plug 'github/copilot.com'
+
 " prevent modeline from running arbitrary code
 Plug 'ciaranm/securemodelines'
 
