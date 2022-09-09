@@ -17,11 +17,6 @@ alias cat="hicat"
 alias sleep="pmset sleepnow"
 alias pycache="find . | grep -E \"(__pycache__|\.pyc|\.pytest_cache|\.pyo$)\" | xargs rm -rf"
 
-alias createvenv="python -m venv .venv"  # python3
-alias createvirtualenv="python -m virtualenv .venv"  # python2
-alias venv=". .venv/bin/activate"
-# alias senv="source .env"
-
 # builtin 
 alias ls='ls -G'
 alias l='ls -Gla'
