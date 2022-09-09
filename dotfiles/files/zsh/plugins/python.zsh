@@ -30,6 +30,30 @@ function cd() {
   fi
 }
 
+
+function createvenv() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    deactivate || return 1
+  fi
+
+  venv_dir="$HOME/.venvs/$(basename $PWD)"
+
+  if [[ -d "$venv_dir" ]]; then
+    rm -rf "$venv_dir" || return 1
+  fi
+
+  python3 -m venv "$venv_dir" || return 1
+  . "$venv_dir/bin/activate" || return 1
+  pip install --upgrade pip
+}
+
+
+function venv() {
+  venv_dir="$HOME/.venvs/$(basename $PWD)"
+  [ ! -d "$venv_dir" ]  && createvenv && return 0
+  . "$venv_dir/bin/activate" || return 1
+}
+
 function revenv() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
     deactivate || return 1
