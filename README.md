@@ -15,7 +15,7 @@
 
 ## zsh
 
-- zsh as default `chsh -s /bin/zsh` or `chsh -s /usr/local/bin/zsh` for brew
+- zsh as default `chsh -s /bin/zsh` or `chsh -s /opt/homebrew/bin/zsh` for brew
 
 |Conf|Resource|Notes
 |aliases|[alias.sh](dotfiles/zsh/plugins/alias.zsh)|shortcuts built up over time|

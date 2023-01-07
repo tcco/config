@@ -9,6 +9,7 @@ httpie
 macvim
 neovim
 node
+npm
 postgresql
 pyenv
 tree
@@ -16,5 +17,7 @@ the_silver_searcher
 wget
 zlib
 
+watchman
 cocoapods
 carthage
+rbenv
