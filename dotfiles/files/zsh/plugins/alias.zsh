@@ -7,6 +7,13 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # Alias
 
+# Arm vs intel
+alias arm="env /usr/bin/arch -arm64 /bin/zsh"
+alias intel="env /usr/bin/arch -x86_64 /bin/zsh"
+alias abrew="arch -arm64 brew"
+alias apyenv="arch -arm64 pyenv"
+export LDFLAGS="-L/opt/homebrew/lib"; export CPPFLAGS="-I/opt/homebrew/include"
+
 ## General
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias geoip="curl http://ip-api.com/json/"
