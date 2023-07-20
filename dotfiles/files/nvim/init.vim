@@ -54,6 +54,8 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'stephpy/vim-yaml'
 " Plug 'cespare/vim-toml'
+"
+Plug 'Exafunction/codeium.vim'
 
 " Color boxes to preview rgb/hex/etc
 " Likely need to install go https://go.dev/doc/install
