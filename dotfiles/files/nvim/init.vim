@@ -1,7 +1,7 @@
 """ Plugins
 
 " Auto install all desired COC extensions / language servers
-let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint']
+let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint', 'coc-eslint']
 
 call plug#begin()
 
@@ -58,6 +58,9 @@ Plug 'sheerun/vim-polyglot'
 " Color boxes to preview rgb/hex/etc
 " Likely need to install go https://go.dev/doc/install
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+Plug 'norcalli/nvim-colorizer.lua'
+" lua require'colorizer'.setup()
 
 call plug#end()
 
