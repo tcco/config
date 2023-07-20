@@ -8,8 +8,7 @@ gh
 httpie
 macvim
 neovim
-node
-npm
+nvm
 postgresql
 pyenv
 tree
