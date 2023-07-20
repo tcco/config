@@ -18,8 +18,10 @@
   "prettier.disableLanguages": ["html"],
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "typescript.autoClosingTags": true,
   "javascript.autoClosingTags": true,
+  "javascript.showUnused": true,
+  "typescript.autoClosingTags": true,
+  "typescript.showUnused": true,
   "yaml.customTags": [
     "!Ref",
     "!Sub",
