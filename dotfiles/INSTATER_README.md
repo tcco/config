@@ -35,11 +35,11 @@ pyeven install <latest python>
 pip install instater
 
 
-instater ---tags system --vars 'brew_install=true'
-instater ---tags dev,git,python,javascript --vars 'python_install=true; javascript_install=true'
+instater --tags system --vars 'brew_install=true'
+instater --tags dev,git,python,javascript --vars 'python_install=true; javascript_install=true'
 
 
-instater ---tags dev,java,rust,terraform
+instater --tags dev,java,rust,terraform
 
-intsall --tags term,zsh,ack,nvim --vars 'zsh_install=true'
+instater --tags term,zsh,ack,nvim --vars 'zsh_install=true'
 ```
