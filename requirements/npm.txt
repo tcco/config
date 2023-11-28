@@ -1,5 +1,5 @@
 create-react-app
 hicat
-nodejs-live-server
+# nodejs-live-server
 prettier
 solc
