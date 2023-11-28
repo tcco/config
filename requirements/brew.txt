@@ -15,8 +15,3 @@ tree
 the_silver_searcher
 wget
 zlib
-
-watchman
-cocoapods
-carthage
-rbenv

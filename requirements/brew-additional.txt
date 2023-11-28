@@ -1,0 +1,4 @@
+watchman
+cocoapods
+carthage
+rbenv
