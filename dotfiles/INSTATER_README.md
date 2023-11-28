@@ -38,10 +38,9 @@ nvm install node
 
 
 instater --tags system --vars 'brew_install=true'
+instater --tags term --vars 'zsh_install=true'
+
 instater --tags dev,git,python,javascript --vars 'python_install=true; javascript_install=true'
-
-
 instater --tags dev,java,rust,terraform
 
-instater --tags term,zsh,ack,nvim --vars 'zsh_install=true'
 ```
