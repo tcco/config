@@ -31,8 +31,10 @@ cd config
 
 
 brew install pyenv
-pyeven install <latest python>
+pyenv install <latest python>
 pip install instater
+
+nvm install node
 
 
 instater --tags system --vars 'brew_install=true'
