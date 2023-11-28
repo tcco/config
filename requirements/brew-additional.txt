@@ -1,4 +1,3 @@
 watchman
 cocoapods
 carthage
-rbenv
