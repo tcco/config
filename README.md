@@ -17,7 +17,7 @@
 
 - zsh as default `chsh -s /bin/zsh` or `chsh -s /opt/homebrew/bin/zsh` for brew
 
-|Conf|Resource|Notes
+|Conf|Resource|Notes|
 |aliases|[alias.sh](dotfiles/zsh/plugins/alias.zsh)|shortcuts built up over time|
 |theme|[powerlevel10k](https://github.com/romkatv/powerlevel10k)|pretty|
 

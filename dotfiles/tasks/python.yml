@@ -4,11 +4,11 @@
     condition: which pyenv
     condition_code: 1
 
-- name: Install poetry
-  command:
-    command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-    condition: which poetry
-    condition_code: 1
+    # - name: Install poetry
+    #   command:
+    #     command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+    #     condition: which poetry
+    #     condition_code: 1
 
 - name: Install python packages
   command: pip install -r "{{ configdir }}/requirements/python.txt"
