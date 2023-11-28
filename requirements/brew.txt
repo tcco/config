@@ -7,6 +7,7 @@ gdb
 gh
 httpie
 macvim
+node
 neovim
 nvm
 postgresql
