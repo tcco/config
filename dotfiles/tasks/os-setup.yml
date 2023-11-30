@@ -12,11 +12,11 @@
 
 - name: Brew requiements
   command:
-    command: brew install $(cat "{{ configdir }}/requirements/brew.txt")
+    command: ach -arm64 brew install $(cat "{{ configdir }}/requirements/brew.txt")
     when: brew_install
 
 
 - name: Brew additional requiements
   command:
-    command: brew install $(cat "{{ configdir }}/requirements/brew-additional.txt")
+    command: ach -arm64 brew install $(cat "{{ configdir }}/requirements/brew-additional.txt")
     when: brew_install_additional
