@@ -1,5 +1,5 @@
 - name: Install rust
   command:
-    command: brew install rustup  && rustup-init
+    command: arch -arm64 brew install rustup  && rustup-init
     condition: which rust
     condition_code: 1
