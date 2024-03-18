@@ -1,7 +1,7 @@
 """ Plugins
 
 " Auto install all desired COC extensions / language servers
-let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint', 'coc-eslint']
+let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint', 'coc-eslint', 'coc-flutter']
 
 call plug#begin()
 
