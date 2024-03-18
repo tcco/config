@@ -13,7 +13,8 @@
     "css",
     "json",
     "sol",
-    "rust"
+    "rust",
+    "dart"
   ],
   "prettier.disableLanguages": ["html"],
   "prettier.singleQuote": true,
