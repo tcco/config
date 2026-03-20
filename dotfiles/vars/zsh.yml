@@ -1,3 +1,0 @@
-zsh_home_dir: "{{ homedir}}/.zsh"
-zsh_plugins_dir: "{{ zsh_home_dir }}/plugins"
-zsh_rc_file: "{{ homedir }}/.zshrc"

@@ -1,7 +1,0 @@
-Color Highlighter
-GitGutter
-SublimeLinter
-SublimeLinter-flake8
-SublimeLinter-pydocstyle
-JavaScriptEnhancements
-Color Highlighter

@@ -1,4 +1,0 @@
-username: timothyco
-homedir: "/Users/{{ username }}"
-configdir: "/Users/{{ username }}/config"
-kernel: macos

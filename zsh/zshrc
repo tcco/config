@@ -1,0 +1,20 @@
+# ~/.zshrc - Main zsh configuration
+# Sources all plugins from ~/.zsh/plugins/
+
+# Enable Powerlevel10k instant prompt (if using)
+/usr/local/share/powerlevel10k/p10k.zsh 2>/dev/null
+[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+
+# Source all plugin files
+for plugin in ~/.zsh/plugins/*.zsh; do
+  source "$plugin"
+done
+
+# Initialize Starship prompt
+eval "$(starship init zsh)"
+
+# Initialize zoxide for smarter cd
+eval "$(zoxide init zsh --hook none)"
+
+# Local machine-specific additions (create this file to add personal overrides)
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

@@ -1,4 +1,0 @@
-
-- name: Install javascript packages
-  command: cat "{{ configdir }}/requirements/npm.txt" | xargs npm install -g
-  when: javascript_install

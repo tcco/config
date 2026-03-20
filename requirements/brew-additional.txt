@@ -1,4 +1,0 @@
-adp
-watchman
-cocoapods
-carthage

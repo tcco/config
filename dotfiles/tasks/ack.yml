@@ -1,6 +1,0 @@
-
-- name: Install ackrc 
-  copy:
-    src: files/ackrc
-    dest: "{{ homedir }}/.ackrc"
-

@@ -1,0 +1,36 @@
+# Starship prompt configuration
+# Docs: https://starship.rs/config/
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+
+[nodejs]
+format = "[$version]($style) "
+style = "bold yellow"
+symbol = ""
+
+[python]
+format = "[$version]($style) "
+style = "bold yellow"
+symbol = ""
+
+[rust]
+format = "[$version]($style) "
+style = "bold red"
+symbol = ""
+
+[aws]
+format = "[$profile]($style) "
+style = "bold yellow"
+
+[cmd_duration]
+min_time = 5000
+format = "took [$duration]($style) "
+style = "bold yellow"

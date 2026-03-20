@@ -1,12 +1,2 @@
-**/*.venv
-**/*venv
-**/*node_modules
-
-*.paw
-
-# Mac
 .DS_Store
-
-# Vim
-*.swp
-*.swo
+*log
