@@ -1,6 +1,9 @@
 # ~/.zshrc - Main zsh configuration
 # Sources all plugins from ~/.zsh/plugins/
 
+# Enable zsh-syntax-highlighting (must be sourced first)
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Enable Powerlevel10k instant prompt (if using)
 /usr/local/share/powerlevel10k/p10k.zsh 2>/dev/null
 [[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
@@ -9,6 +12,10 @@
 for plugin in ~/.zsh/plugins/*.zsh; do
   source "$plugin"
 done
+
+# Case-insensitive autocomplete
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
 
 # Initialize Starship prompt
 eval "$(starship init zsh)"

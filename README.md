@@ -55,6 +55,7 @@ git pull  # get latest changes
 | **ripgrep** | Fast grep | `rg <pattern>` |
 | **fd** | Fast find | `fd <pattern>` |
 | **tldr** | Simplified man pages | `tldr <command>` |
+| **zsh-syntax-highlighting** | Valid command highlighting | (automatic) |
 
 ### Neovim Plugins
 
@@ -190,6 +191,18 @@ pycache        # Remove Python cache
 tldr <cmd>     # Quick command reference
 man <cmd>      # Full manual
 ```
+
+### Shell Features
+
+**Command Highlighting (zsh-syntax-highlighting):**
+- Valid commands → **green** text
+- Invalid commands → **red** text
+- Paths/options → color-coded
+
+**Case-Insensitive Autocomplete:**
+- Tab completion ignores case
+- Matches `ls`, `LS`, `Ls` equally
+- Use `Ctrl+Space` for menu selection
 
 ---
 
