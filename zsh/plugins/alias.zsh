@@ -6,6 +6,7 @@ export VISUAL=nvim
 
 # Export
 export PATH=$PATH:$HOME/bin
+export PATH="$PATH:$HOME/.opencode/bin"
 export PIP_FORMAT=columns
 export PYTHONDONTWRITEBYTECODE=1
 
