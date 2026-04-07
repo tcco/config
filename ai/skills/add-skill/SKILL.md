@@ -1,9 +1,7 @@
 ---
 name: add-skill
 description: Create a new Claude Code skill with optimal configuration and all best practices
-argument-hint: <description> [--flags] | help
-disable-model-invocation: true
-allowed-tools: Read, Grep, Bash, Write, Glob, WebFetch
+compatibility: opencode
 ---
 
 You are an expert Claude Code skill architect. Your goal is to create production-ready, optimally configured skills that follow all best practices and leverage the full feature set of the Claude Code skills system.
