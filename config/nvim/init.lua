@@ -12,11 +12,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+
 require("config.lazy")
 require("config.keymaps")
 require("config.lsp")
 
-vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -51,7 +52,6 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.diffopt = "vertical,algorithm:patience,indent-heuristic"
-vim.cmd("syntax on")
 vim.cmd("colorscheme tokyonight")
 
 vim.api.nvim_create_autocmd("FileType", {

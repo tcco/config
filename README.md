@@ -97,6 +97,54 @@ la             # List all including hidden (eza)
 lt             # Tree view (eza)
 ```
 
+### File Viewing (bat)
+
+```bash
+cat <file>              # View with syntax highlighting (bat)
+bat --style=numbers      # Add line numbers
+bat --language=python    # Force language
+bat --paging=never       # Disable pager (stream output)
+bat --paging=always      # Always use pager
+```
+
+**Pager Navigation (when viewing large files):**
+
+| Key | Action |
+|-----|--------|
+| `j` / `↓` | Down one line |
+| `k` / `↑` | Up one line |
+| `Space` / `PgDn` | Down one page |
+| `b` / `PgUp` | Up one page |
+| `g` | Go to top |
+| `G` | Go to bottom |
+| `q` | Quit pager |
+
+### Search Tools
+
+**ripgrep (rg) - Fast grep:**
+
+```bash
+rg "pattern"                  # Search recursively
+rg -i "pattern"               # Case insensitive
+rg -g "*.js" "pattern"        # Glob filter
+rg -l "pattern"                # List files only
+rg -n "pattern"                # Show line numbers
+rg -C 3 "pattern"             # Context lines (3 before/after)
+rg -v "pattern"                # Invert match (exclude)
+```
+
+**fd - Fast find:**
+
+```bash
+fd "name"                       # Find files by name
+fd -e ext                       # Find by extension
+fd -H                           # Include hidden files
+fd -d 2                         # Max depth 2
+fd -t f                         # Files only
+fd -t d                         # Directories only
+fd -p "pattern"                 # Search file contents (like grep)
+```
+
 ### Git Shortcuts
 
 ```bash
@@ -146,6 +194,118 @@ man <cmd>      # Full manual
 ---
 
 ## Neovim Key Mappings
+
+### Quick Menu (which-key)
+
+Press `<leader>` (Space) and wait ~0.3s to see a popup menu of all available key mappings.
+
+### Vim Essentials
+
+**Movement:**
+```
+h / j / k / l    Left / down / up / right
+w                Next word start
+b                Previous word start
+e                Next word end
+0                Start of line
+$                End of line
+gg               Go to top of file
+G                Go to bottom of file
+<number>G        Go to line <number>
+```
+
+**Editing:**
+```
+i                Insert mode (before cursor)
+a                Insert mode (after cursor)
+I                Insert at start of line
+A                Insert at end of line
+o                New line below
+O                New line above
+x                Delete character
+dd               Delete line
+yy               Yank (copy) line
+p                Paste after cursor
+P                Paste before cursor
+u                Undo
+Ctrl+r           Redo
+.                Repeat last command
+```
+
+### Multi-Select
+
+**Visual Mode:**
+```
+v                Enter visual mode (character select)
+V                Enter visual line mode
+Ctrl+v           Enter visual block mode
+```
+
+**In Visual Mode:**
+```
+y                Yank (copy) selection
+d                Delete selection
+c                Change selection
+>                Indent right
+<                Indent left
+~                Toggle case
+```
+
+**Object Selection:**
+```
+vi"             Select inside quotes
+vi)             Select inside parentheses
+vi]             Select inside brackets
+vap             Select around paragraph
+ci"             Change inside quotes
+yi"             Yank inside quotes
+```
+
+### Visual Multi (Multi-Cursor)
+
+**vim-visual-multi** - Select and edit multiple locations at once.
+
+| Command | Description |
+|---------|-------------|
+| `\n` | Start multi-select on word under cursor |
+| `\N` | Skip to next occurrence |
+| `\j` | Select next word |
+| `\k` | Select previous word |
+| `\s` | Search for pattern to select |
+| `\a` | Select all matches |
+| `\q` | Remove current selection |
+| `\Q` | Remove all selections |
+| `\d` | Select next word (Ctrl+D) |
+| `\p` | Select previous word |
+| `\i` | Insert at start of all selections |
+| `\A` | Insert at end of all selections |
+| `n` | Select next occurrence |
+| `N` | Skip to next occurrence |
+| `Esc` | Exit multi-select mode |
+
+**Basic workflow:**
+1. Place cursor on a word
+2. Press `\n` to select that word
+3. Press `n` to jump to next occurrence, `N` to skip
+4. Edit once, changes apply to all selections
+5. `Esc` to exit multi-select
+
+**Alternative Keybindings (Ctrl+N / Ctrl+Up/Down):**
+
+The default keybindings use `\` (backslash). To use Ctrl+N / Ctrl+Up/Down instead, add these to your `keymaps.lua`:
+
+```lua
+-- vim-visual-multi Ctrl keybindings
+vim.keymap.set("n", "<C-n>", "<Plug>(VM-select-next)", { silent = true })
+vim.keymap.set("n", "<C-j>", "<Plug>(VM-select-next)", { silent = true })  -- Down
+vim.keymap.set("n", "<C-k>", "<Plug>(VM-select-previous)", { silent = true })  -- Up
+```
+
+| Default | Alternative | Description |
+|---------|-------------|-------------|
+| `\n` | `Ctrl+n` | Select word under cursor |
+| `n` | `Ctrl+j` | Select next occurrence |
+| `N` | `Ctrl+k` | Select previous occurrence |
 
 ### General
 

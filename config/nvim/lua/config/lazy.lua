@@ -10,7 +10,7 @@ require("lazy").setup({
   }},
   { "nvim-tree/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFocus" }, keys = { { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle tree" } }, opts = { view = { width = 35 }, git = { ignore = false } } },
   { "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" }, opts = { signs = { add = { text = "▎" }, change = { text = "▎" }, delete = { text = "" }, topdelete = { text = "" }, changedelete = { text = "▎" }, untracked = { text = "▎" } } } },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = { "BufReadPost", "BufNewFile" }, config = function() require("nvim-treesitter.configs").setup({ ensure_installed = { "bash", "c", "css", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "python", "ruby", "rust", "toml", "tsx", "typescript", "vim", "vimdoc", "yaml" }, auto_install = true, highlight = { enable = true }, indent = { enable = true } }) end },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = { "BufReadPost", "BufNewFile" }, opts = { ensure_installed = { "bash", "c", "css", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "python", "ruby", "rust", "toml", "tsx", "typescript", "vim", "vimdoc", "yaml" }, auto_install = true, highlight = { enable = true }, indent = { enable = true } }, },
   { "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
   { "hrsh7th/nvim-cmp", event = "InsertEnter", dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path" } },
   { "Exafunction/codeium.nvim", event = "InsertEnter", dependencies = { "hrsh7th/nvim-cmp" } },
@@ -22,7 +22,8 @@ require("lazy").setup({
   { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
   { "folke/trouble.nvim", dependencies = "nvim-tree/nvim-web-devicons", cmd = { "Trouble", "TroubleToggle" }, keys = { { "<leader>xx", "<cmd>Trouble<cr>" }, { "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>" }, { "gR", "<cmd>Trouble lsp_references<cr>" } } },
   { "andymass/vim-matchup", event = "BufReadPost" },
-  { "norcalli/nvim-colorizer.lua", event = { "BufReadPre", "BufNewFile" }, config = function() require("colorizer").setup({ css = true, html = true }) end },
+  { "norcalli/nvim-colorizer.lua", event = { "BufReadPre", "BufNewFile" }, config = function() require("colorizer").setup({ css = { ft = "css" }, html = { ft = "html" }, tailwind = { ft = "css" } }) end },
   { "machakann/vim-highlightedyank", event = "BufRead", config = function() vim.g.highlightedyank_highlight_duration = 300 end },
   { "mrcjkb/rustaceanvim", version = "^4", ft = { "rust" } },
+  { "mg979/vim-visual-multi", event = "BufEnter", config = function() vim.g.VM_default_options = { start_in_insert = false } end },
 }, { defaults = { lazy = false }, performance = { rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } } } })

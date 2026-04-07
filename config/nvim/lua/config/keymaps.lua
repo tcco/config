@@ -22,3 +22,14 @@ vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
 vim.keymap.set("n", "<leader>gd", "<cmd>Gdiffsplit<cr>", { desc = "Git diff" })
 vim.keymap.set("n", "<leader>v", "<cmd>NvimTreeFindFile<cr>", { desc = "Find in tree" })
 vim.keymap.set("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search" })
+
+-- vim-visual-multi custom keybindings
+vim.g.VM_default_options = {
+  find_by_visual = true,
+  add_to_search = true,
+}
+
+-- vim-visual-multi Ctrl keybindings (Ctrl+n, Ctrl+j, Ctrl+k)
+vim.keymap.set("n", "<C-n>", "<Plug>(VM-select-next)", { silent = true })
+vim.keymap.set("n", "<C-j>", "<Plug>(VM-select-next)", { silent = true })  -- Down
+vim.keymap.set("n", "<C-k>", "<Plug>(VM-select-previous)", { silent = true })  -- Up
