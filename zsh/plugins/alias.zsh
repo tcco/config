@@ -22,7 +22,7 @@ alias sleep="pmset sleepnow"
 alias pycache="find . | grep -E \"(__pycache__|\.pyc|\.pytest_cache|\.pyo$)\" | xargs rm -rf"
 
 # Builtin
-alias ls='ls -G'
+alias ls='eza'
 alias l='ls -Gla'
 alias rm='rm -i'
 alias cp='cp -i'

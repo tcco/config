@@ -1,0 +1,26 @@
+{
+  "apiKeyPath": "~/.config/notion/api_key",
+  "version": "2025-09-03",
+  "databases": {
+    "get-done": {
+      "id": "4f3373c44b4d4cf39f713de07b28f50be9",
+      "description": "Daily life kanban",
+      "filterFields": ["Status", "Priority", "Category"]
+    },
+    "life": {
+      "id": "7ee8b17317cbe40b28b24aed349be0c300",
+      "description": "Life lessons, professional, goals, kids, interview prep",
+      "filterFields": ["Type", "Status", "Year", "Category"]
+    },
+    "future": {
+      "id": "29c26e739c16b711baf10c6f99b84291",
+      "description": "Long term life goals kanban",
+      "filterFields": ["Status", "Timeline", "Priority"]
+    },
+    "side-gigs": {
+      "id": "db22baf9f0de492bca6e48db49a46b2",
+      "description": "Income ventures, trading strategies, equity tracking",
+      "filterFields": ["Type", "Status", "Portfolio", "Ticker"]
+    }
+  }
+}
