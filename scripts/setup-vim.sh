@@ -17,10 +17,7 @@ if [ ! -f ~/.config/nvim/init.lua ]; then
     ln -sf ~/config/.config/nvim/init.lua ~/.config/nvim/init.lua
 fi
 
-# Install formatters/linters for conform.nvim
-echo "Installing formatters..."
-npm install -g prettierd eslint_d
-pip install black isort
+# Formatters are now installed via Homebrew (stylua, prettierd, ruff)
 
 # Open neovim to trigger lazy.nvim plugin installation
 echo "Opening neovim to install plugins..."

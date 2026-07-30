@@ -99,16 +99,7 @@ backup_vscode_extensions() {
     fi
 }
 
-backup_cursor_extensions() {
-    log_info "Backing up Cursor extensions..."
-    
-    if command -v cursor &> /dev/null; then
-        cursor --list-extensions > "$BACKUP_FILE-cursor-extensions.txt"
-        log_success "Cursor extensions backed up"
-    else
-        log_warning "Cursor not found"
-    fi
-}
+
 
 backup_system_info() {
     log_info "Backing up system information..."
@@ -213,12 +204,7 @@ if [[ -f "$BACKUP_PREFIX-vscode-extensions.txt" ]]; then
     echo
 fi
 
-# Cursor
-if [[ -f "$BACKUP_PREFIX-cursor-extensions.txt" ]]; then
-    echo "To restore Cursor extensions:"
-    echo "  cat '$BACKUP_PREFIX-cursor-extensions.txt' | xargs -L1 cursor --install-extension"
-    echo
-fi
+
 
 echo "System information is available in:"
 echo "  $BACKUP_PREFIX-system-info.txt"
@@ -250,7 +236,7 @@ main() {
     backup_pnpm_packages
     backup_python_packages
     backup_vscode_extensions
-    backup_cursor_extensions
+
     backup_system_info
     backup_dotfiles_git_info
     create_restore_script

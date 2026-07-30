@@ -98,9 +98,19 @@ main() {
     log_step "Creating symlinks..."
 
     # Config directory
-    rm -rf ~/.config
-    ln -sf "$SCRIPT_DIR/config" ~/.config
-    log_success "Linked ~/.config -> $SCRIPT_DIR/config"
+    log_info "Linking configurations inside ~/.config..."
+    mkdir -p "$HOME/.config"
+    for item in "$SCRIPT_DIR/config"/*; do
+        if [[ -e "$item" ]]; then
+            local name
+            name="$(basename "$item")"
+            if [[ -d "$item" ]]; then
+                link_directory "$item" "$HOME/.config/$name"
+            elif [[ -f "$item" ]]; then
+                link_file "$item" "$HOME/.config/$name"
+            fi
+        fi
+    done
 
     # Zsh
     link_file "$SCRIPT_DIR/zsh/zshrc" "$HOME/.zshrc"
@@ -202,7 +212,7 @@ main() {
         <string>/usr/bin/hidutil</string>
         <string>property</string>
         <string>--set</string>
-        <string>{"UserKeyMapping":[{"HIDKeyCode":57,"Replacement":{"HIDKeyCode":53}]}]}</string>
+        <string>{"UserKeyMapping":[{"HIDKeyCode":57,"Replacement":{"HIDKeyCode":41}}]}</string>
     </array>
     <key>RunAtLoad</key>
     <true/>

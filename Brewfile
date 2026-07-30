@@ -59,36 +59,35 @@ brew "httpie"               # Modern HTTP client
 brew "direnv"               # Per-project environment
 brew "stylua"               # Lua formatter
 brew "prettierd"            # Prettier daemon
-brew "docker-compose"
-
 # =============================================================================
 # AI TOOLS
 # =============================================================================
 
 brew "anomalyco/tap/opencode"
+brew "ruff"                 # Fast Python linter/formatter
 
 # =============================================================================
 # GUI APPLICATIONS (Casks)
 # =============================================================================
 
 # Editors
-# cask "cursor"               # AI-powered code editor
 # cask "visual-studio-code"
-cask "zed"
+cask "antigravity"          # Google's agent platform
 
 # Browsers
 # cask "arc"
 cask "google-chrome"
-cask "firefox"
 
 # Productivity
 # cask "raycast"              # App launcher
 cask "notion"
+cask "obsidian"             # Knowledge base / Markdown editor
 # cask "1password"
 # cask "1password-cli"
 
 # Dev Tools
 cask "docker"
+cask "ghostty"              # Modern terminal emulator
 # cask "postman"
 # cask "orbstack"             # Docker alternative
 # cask "warp"                 # Terminal
@@ -100,7 +99,6 @@ cask "discord"
 # cask "telegram"
 
 # Utilities
-cask "font-jetbrains-mono"
 
 # Entertainment
 # cask "spotify"
