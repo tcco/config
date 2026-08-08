@@ -38,6 +38,10 @@ link_file() {
         log_error "Source file $src not found"
         return 1
     fi
+    if [[ -L "$dest" ]] && [[ "$(realpath "$dest")" == "$(realpath "$src")" ]]; then
+        log_success "Linked $src -> $dest"
+        return 0
+    fi
     backup_if_exists "$dest"
     mkdir -p "$(dirname "$dest")"
     rm -f "$dest"
@@ -51,6 +55,10 @@ link_directory() {
     if [[ ! -d "$src" ]]; then
         log_error "Source directory $src not found"
         return 1
+    fi
+    if [[ -L "$dest" ]] && [[ "$(realpath "$dest")" == "$(realpath "$src")" ]]; then
+        log_success "Linked $src -> $dest"
+        return 0
     fi
     if [[ -e "$dest" && ! -L "$dest" ]]; then
         log_warning "Backing up $dest"
@@ -99,6 +107,10 @@ main() {
 
     # Config directory
     log_info "Linking configurations inside ~/.config..."
+    if [[ -L "$HOME/.config" ]]; then
+        log_warning "$HOME/.config is a symlink. Removing symlink to create real directory."
+        rm "$HOME/.config"
+    fi
     mkdir -p "$HOME/.config"
     for item in "$SCRIPT_DIR/config"/*; do
         if [[ -e "$item" ]]; then
@@ -129,6 +141,27 @@ main() {
     log_step "Installing Homebrew packages..."
     if [[ -f "$SCRIPT_DIR/Brewfile" ]]; then
         brew bundle --file="$SCRIPT_DIR/Brewfile" || log_warning "Some Brewfile installs failed"
+    fi
+
+    # Ensure opencode is installed even if brew bundle encountered tap/Xcode issues
+    if ! command -v opencode &>/dev/null; then
+        log_info "Installing opencode binary directly..."
+        local arch bin_dir
+        arch="$(uname -m)"
+        if [[ -d "/opt/homebrew/bin" ]]; then
+            bin_dir="/opt/homebrew/bin"
+        else
+            bin_dir="/usr/local/bin"
+        fi
+        if [[ "$arch" == "arm64" ]]; then
+            curl -fsSL https://github.com/anomalyco/opencode/releases/latest/download/opencode-darwin-arm64.zip -o /tmp/opencode.zip
+        else
+            curl -fsSL https://github.com/anomalyco/opencode/releases/latest/download/opencode-darwin-x64.zip -o /tmp/opencode.zip
+        fi
+        unzip -qo /tmp/opencode.zip -d "$bin_dir"
+        chmod +x "$bin_dir/opencode"
+        rm -f /tmp/opencode.zip
+        log_success "opencode installed to $bin_dir/opencode"
     fi
     log_success "Homebrew packages installed"
 
