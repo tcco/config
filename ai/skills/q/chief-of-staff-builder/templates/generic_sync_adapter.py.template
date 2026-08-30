@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+"""
+Template Ingestion & Sync Adapter for AI Chief of Staff
+-------------------------------------------------------
+Demonstrates:
+1. Environment variable loading (.env)
+2. Safe authentication & error handling
+3. Fetching and normalizing external entities
+4. Atomic JSON cache dump & Markdown summary generation
+"""
+
+import os
+import sys
+import json
+import time
+from pathlib import Path
+from typing import Dict, Any, List, Optional
+from datetime import datetime
+
+# 1. Environment & Path Setup
+ROOT_DIR = Path(__file__).resolve().parent
+CACHE_DIR = ROOT_DIR / "cache" / "{{SOURCE_NAME}}"
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+def load_env(env_path: Optional[Path] = None) -> Dict[str, str]:
+    """Loads key-value pairs from .env into os.environ."""
+    if env_path is None:
+        env_path = ROOT_DIR / ".env"
+    env_vars = {}
+    if env_path.exists():
+        with open(env_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                k = k.strip()
+                v = v.strip().strip("'\"")
+                env_vars[k] = v
+                if k not in os.environ:
+                    os.environ[k] = v
+    return env_vars
+
+load_env()
+
+# 2. Connector Implementation
+class SourceAdapter:
+    def __init__(self):
+        self.api_key = os.getenv("{{SOURCE_API_KEY_ENV}}")
+        if not self.api_key:
+            print("⚠️ Warning: {{SOURCE_API_KEY_ENV}} is not set in environment or .env")
+
+    def fetch_records(self) -> List[Dict[str, Any]]:
+        """Simulates or executes API fetch with error handling."""
+        # Replace with actual API request (e.g. requests.get, client SDK, etc.)
+        records = []
+        try:
+            # Example record structure:
+            records = [
+                {
+                    "id": "item_001",
+                    "title": "Example Action Item",
+                    "status": "In Progress",
+                    "priority": "High",
+                    "updated_at": datetime.now().isoformat(),
+                    "details": "Example details for the item."
+                }
+            ]
+        except Exception as e:
+            print(f"❌ Error fetching from source: {e}")
+        return records
+
+    def sync(self):
+        """Fetches records, writes atomic cache, and generates markdown summary."""
+        print(f"🔄 Syncing {{SOURCE_NAME}} to {CACHE_DIR}...")
+        records = self.fetch_records()
+        
+        # 1. Save normalized JSON records
+        entities_dir = CACHE_DIR / "entities"
+        entities_dir.mkdir(parents=True, exist_ok=True)
+        
+        for record in records:
+            file_path = entities_dir / f"{record['id']}.json"
+            tmp_path = entities_dir / f"{record['id']}.tmp"
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(record, f, indent=2)
+            tmp_path.replace(file_path)
+
+        # 2. Generate Human & LLM-friendly Markdown Summary
+        summary_md_path = CACHE_DIR / "summary.md"
+        summary_lines = [
+            f"# 📊 {{SOURCE_TITLE}} Summary",
+            f"*Last Synced: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*",
+            f"",
+            f"| ID | Title | Status | Priority | Updated |",
+            f"|---|---|---|---|---|"
+        ]
+        for r in records:
+            summary_lines.append(f"| `{r['id']}` | **{r.get('title', 'Untitled')}** | `{r.get('status', 'N/A')}` | {r.get('priority', 'Normal')} | {r.get('updated_at', '')} |")
+        
+        summary_lines.append("")
+        with open(summary_md_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(summary_lines))
+
+        print(f"✅ Synced {len(records)} records. Summary saved to {summary_md_path}")
+
+if __name__ == "__main__":
+    adapter = SourceAdapter()
+    adapter.sync()
