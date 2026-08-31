@@ -6,6 +6,8 @@ Generates a complete, modular AI Chief of Staff setup inside any target director
 Configures:
 - Master Composer prompt (AGENTS.md)
 - Domain Subagents (.agents/subagents/*.md)
+- Proactive Radar & Content Tracking (cache/preferences/proactive_radar.md)
+- Executive Priorities & Decisions Log (cache/preferences/*)
 - Local Cache structure (cache/*)
 - Ingestion connectors & .env.example
 """
@@ -16,6 +18,7 @@ import argparse
 import shutil
 from pathlib import Path
 from typing import List, Set
+from datetime import datetime
 
 DEFAULT_DOMAINS = ["operator", "personal_ops", "professional_ops", "wealth", "distill_engine"]
 DEFAULT_SOURCES = ["notion", "google", "distills"]
@@ -28,7 +31,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Daily & Weekly Triage", "Inspect active cards in Notion / Task DBs", "Cross-reference with upcoming calendar events to stage realistic top 3 must-dos"),
         "resp2": ("Task & Card Management", "Add new tasks, update statuses to Done, or transition cards", "Flag stale cards or items lingering without updates"),
         "resp3": ("Personal Commitments & Renewals", "Track personal renewal notices and urgent deadlines", "Filter high-signal action items from email digests"),
-        "cache": ["cache/notion/board_summary.md", "cache/google/calendars/today_agenda.md", "cache/google/email/triaged_inbox.json"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/notion/board_summary.md", "cache/google/calendars/today_agenda.md", "cache/google/email/triaged_inbox.json"]
     },
     "personal_ops": {
         "title": "Personal Life & Household Operations Sub-Agent",
@@ -37,7 +40,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Household & Family Logistics", "Track home maintenance schedules (HVAC filters, pest control, repairs)", "Coordinate family calendar events and personal appointments"),
         "resp2": ("Personal Errands & Procurements", "Manage errand batches, grocery lists, and pending purchases", "Group errands geographically and temporally for maximum efficiency"),
         "resp3": ("Vehicle & Asset Maintenance", "Track service intervals, registrations, insurance renewals, and inspections", "Audit recurring personal memberships and subscriptions"),
-        "cache": ["cache/notion/cards/", "cache/google/calendars/personal.json"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/notion/cards/", "cache/google/calendars/personal.json"]
     },
     "professional_ops": {
         "title": "Professional Projects & OKR Sub-Agent",
@@ -46,7 +49,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Quarterly OKR & Initiative Tracking", "Maintain visibility over top company/team key results and deliverables", "Flag off-track milestones before sprint deadlines slip"),
         "resp2": ("Meeting & Stakeholder Prep", "Review attendee agendas, recent email threads, and past decision logs prior to high-stakes syncs", "Synthesize post-meeting raw notes into clear next steps with owners"),
         "resp3": ("Career Accomplishment Chronicling", "Log shipped projects, metrics moved, and peer commendations in real-time", "Maintain backlogs of speculative architecture RFCs and strategic proposals"),
-        "cache": ["cache/notion/cards/", "cache/google/calendars/work.json", "cache/distills/"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/notion/cards/", "cache/google/calendars/work.json", "cache/distills/"]
     },
     "wealth": {
         "title": "Wealth & Asset Accumulation Sub-Agent",
@@ -55,7 +58,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Total Net Worth & Balance Sheet", "Aggregate all asset classes: real estate equity, public equities, liquid cash, retirement accounts", "Monitor net worth milestones and multi-year goals"),
         "resp2": ("Cashflow & Savings Rate Tracking", "Coordinate annual retirement contributions, after-tax savings, and reinvestment strategies", "Track cash buffers, fixed monthly burn, and net savings rate"),
         "resp3": ("Connected Accounts Integration", "Ingest and verify balance updates from connected bank and brokerage feeds", "Prepare quarterly balance sheet and portfolio snapshots"),
-        "cache": ["cache/plaid/balances_summary.md", "cache/notion/cards/", "cache/google/sheets/wealth_model.json"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/plaid/balances_summary.md", "cache/notion/cards/", "cache/google/sheets/wealth_model.json"]
     },
     "distill_engine": {
         "title": "Distillation & Continuous Ingestion Sub-Agent",
@@ -64,7 +67,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Continuous Chat & Thought Distillation", "Parse raw conversation dumps, voice notes, and braindumps", "Extract actionable nuggets, decisions, and ideas, tagging them by domain"),
         "resp2": ("Scheduled Routine Processing", "Process scheduled morning briefings, evening recaps, and weekly reviews", "Format digests into cache/distills/ for the Master Chief of Staff"),
         "resp3": ("Cache Synchronization & Health", "Verify cache freshness across all sources", "Re-run sync routines when data becomes stale"),
-        "cache": ["cache/distills/", "cache/notion/", "cache/google/"]
+        "cache": ["cache/preferences/decisions_log.md", "cache/distills/", "cache/notion/", "cache/google/"]
     },
     "career_chronicler": {
         "title": "Career Chronicler Sub-Agent",
@@ -73,7 +76,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Impact Logging", "Record quantitative wins and milestones as they happen", "Map achievements directly to leadership leveling competencies"),
         "resp2": ("1-on-1 & Feedback Tracking", "Maintain running agendas for manager and skip-level syncs", "Track commitments and feedback loops"),
         "resp3": ("Portfolio & Brag Document", "Generate polished bullet points for performance review cycles", "Synthesize quarterly impact summaries"),
-        "cache": ["cache/notion/cards/", "cache/distills/career_log.md"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/notion/cards/", "cache/distills/career_log.md"]
     },
     "real_estate": {
         "title": "Real Estate & Property Portfolio Sub-Agent",
@@ -82,7 +85,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Lease & Tenant Operations", "Track lease renewals, rent collections, and security deposits", "Monitor tenant communications and repair requests"),
         "resp2": ("Property Cashflow & CapEx", "Track gross rents, net operating income (NOI), and mortgage debt service", "Maintain capital expenditure reserves and depreciation schedules"),
         "resp3": ("Market & Acquisition Analysis", "Analyze prospective deals, cap rates, and cash-on-cash returns", "Track local property tax and insurance assessments"),
-        "cache": ["cache/notion/cards/", "cache/google/sheets/real_estate.json"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/notion/cards/", "cache/google/sheets/real_estate.json"]
     },
     "business_sandbox": {
         "title": "Business Sandbox & Venture Ideation Sub-Agent",
@@ -91,7 +94,7 @@ DOMAIN_TEMPLATES = {
         "resp1": ("Idea Incubation & Validation", "Structure raw business concepts into lean canvases and market analyses", "Define minimum viable products (MVPs) and validation milestones"),
         "resp2": ("Venture Backlog Management", "Maintain feature backlogs, go-to-market checklists, and user feedback", "Track unit economics and customer acquisition hypotheses"),
         "resp3": ("Competitive Intelligence", "Monitor competitor moves, pricing models, and market positioning", "Synthesize market research into actionable product roadmaps"),
-        "cache": ["cache/notion/cards/", "cache/distills/ventures.md"]
+        "cache": ["cache/preferences/proactive_radar.md", "cache/notion/cards/", "cache/distills/ventures.md"]
     }
 }
 
@@ -118,15 +121,31 @@ You operate as a trusted executive partner, strategic sounding board, and execut
    - Structure messy thoughts into clean initiatives, milestones, and actionable task cards.
    - Guard {user_name}'s time, focus, and energy ruthlessly.
 
-2. **Reading the Local Cache (Zero-Latency Intelligence)**:
+2. **Zero-Latency Intelligence (Reading Local Cache & Memory)**:
    - Always inspect `./cache/` before querying external APIs.
-   - Task Board & Active Cards: Inspect `cache/notion/board_summary.md` or search in `cache/notion/cards/`.
-   - Calendar & Schedule: Inspect `cache/google/calendars/today_agenda.md`.
-   - Email Action Triage: Inspect `cache/google/email/triaged_inbox.json`.
-   - Financial Balances: Inspect `cache/plaid/balances_summary.md`.
+   - **Proactive Radar & Focus Areas**: Inspect `cache/preferences/proactive_radar.md` and `cache/preferences/user_preferences.md` to track active topics, open inquiries, and what {user_name} cares about.
+   - **Task Board & Active Cards**: Inspect `cache/notion/board_summary.md` or search in `cache/notion/cards/`.
+   - **Calendar & Schedule**: Inspect `cache/google/calendars/today_agenda.md`.
+   - **Email Action Triage**: Inspect `cache/google/email/triaged_inbox.json`.
+   - **Financial Balances**: Inspect `cache/plaid/balances_summary.md`.
    - If cache is empty or stale, run the corresponding sync command (e.g. `python3 notion_cli.py sync`).
 
-3. **Managing Cards & Tasks**:
+3. **Substantive Need Tracking & Proactive Problem-Solving**:
+   - **Understand & Remember Content Requested**: When {user_name} asks about a specific topic, project, ticker, travel plan, person, or problem, record it in `cache/preferences/proactive_radar.md`.
+   - **Proactively Offer Solutions**: Continuously monitor these focus areas against incoming emails, calendar shifts, market signals, and task progress. In future briefings and turns, **proactively surface updates, resolutions, and next steps before being asked**.
+   - **Anticipate and Unblock**: If a task is lingering, an expiration is approaching, or an important event nears, don't just alert—proactively propose the resolution (e.g. recommend booking options, draft unblocking cards, outline next steps).
+   - **Notes for the Future & Decisions**: Record significant strategic decisions, project agreements, and future notes in `cache/preferences/decisions_log.md` with timestamps.
+
+4. **Proactive Scheduling & Reminder Engine**:
+   - When a task, preference, or follow-up has a time dimension:
+     - **Timers / Cron**: Use the `schedule` tool to set one-shot timers or recurring cron triggers.
+     - **Scheduled Cards**: Create cards in Notion with deadlines:
+       ```bash
+       python3 notion_cli.py add "Title" --db "Database Name" --status "To Do" --tags "tag1,tag2" --body "Details..."
+       ```
+     - **Calendar Reminders**: Proactively propose adding reminder blocks to Google Calendar.
+
+5. **Managing Cards & Tasks**:
    - **Add Cards**: When tasks or ideas are agreed upon:
      ```bash
      python3 notion_cli.py add "Title" --db "Database Name" --status "To Do" --tags "tag1,tag2" --body "Details..."
@@ -140,16 +159,16 @@ You operate as a trusted executive partner, strategic sounding board, and execut
      python3 notion_cli.py archive "Card Title or ID"
      ```
 
-4. **Domain Delegation (Specialized Subagents)**:
+6. **Domain Delegation (Specialized Subagents)**:
    - When a request requires specialized focus, delegate to domain subagents via `invoke_subagent`:
 {subagents_block}
 
-5. **Executive Operating Rhythms**:
-   - **Morning**: Deliver a 60-second executive briefing (Today's Agenda, Top 3 Focus Priorities, Action Alerts).
+7. **Executive Operating Rhythms**:
+   - **Morning**: Deliver a 60-second executive briefing (Today's Agenda, Top 3 Focus Priorities, Proactive Radar Updates, Action Alerts).
    - **Evening**: Facilitate a brief wrap-up, celebrate completed cards, and stage tomorrow's top 3.
-   - **Weekly**: Provide a cross-domain scorecard (Wins, Financial pulse, Upcoming week lookahead).
+   - **Weekly**: Provide a cross-domain scorecard (Wins, Financial pulse, Upcoming week lookahead, Proactive Radar health).
 
-6. **Visual Dashboards**:
+8. **Visual Dashboards**:
    - Render clean Markdown Kanban tables or Mermaid diagrams whenever {user_name} asks for a visual board or roadmap.
 """
 
@@ -244,7 +263,8 @@ def main():
     dirs_to_create = [
         target_dir / ".agents" / "subagents",
         target_dir / ".agents" / "skills",
-        target_dir / "cache"
+        target_dir / "cache",
+        target_dir / "cache" / "preferences"
     ]
     for s in sources:
         dirs_to_create.append(target_dir / "cache" / s)
@@ -266,7 +286,77 @@ def main():
             f.write(composer_content)
         print(f"📝 Generated Master Composer prompt: {agents_md_file.name}")
 
-    # 2. Subagents
+    # 2. Proactive Radar & Preferences
+    radar_file = target_dir / "cache" / "preferences" / "proactive_radar.md"
+    if not radar_file.exists():
+        radar_content = f"""# 🎯 Proactive Radar & Substantive Content Tracking
+
+*Maintained continuously by the Chief of Staff to track specific topics, projects, inquiries, and problems {args.user_name} requests. The Chief of Staff monitors these areas and proactively surfaces updates, resolutions, and next steps before being asked.*
+
+---
+
+## 📡 Active Inquiries & Topics on the Radar
+
+| Topic / Entity | What {args.user_name} Requests / Cares About | Proactive Trigger & Monitored Source | Status / Next Proactive Step |
+| :--- | :--- | :--- | :--- |
+| **Active Project Alpha** | Shipped deliverables & blocker resolution | Notion Project DB / Email threads | Proactively identify blockers and propose unblocking steps |
+
+---
+
+## 🔍 Proactive Problem-Solving Queue (Solving Ahead of Time)
+1. **Stalled Tasks**: Diagnose why high-priority cards in `Doing` are blocked and propose concrete resolution options.
+2. **Upcoming Expirations & Renewals**: Audit commitments 14–30 days out with drafted renewal actions.
+3. **Schedule Protection**: Identify high-density meeting days and proactively propose protected deep-work blocks.
+"""
+        if args.dry_run:
+            print(f"[DRY RUN] Write: {radar_file}")
+        else:
+            with open(radar_file, "w", encoding="utf-8") as f:
+                f.write(radar_content)
+            print(f"📡 Generated Proactive Radar: cache/preferences/proactive_radar.md")
+
+    user_prefs_file = target_dir / "cache" / "preferences" / "user_preferences.md"
+    if not user_prefs_file.exists():
+        prefs_content = f"""# 🧠 Substantive Executive Priorities & Operating Boundaries
+
+*Core content interests, decision boundaries, and operational criteria that guide how the Chief of Staff prioritizes and proactively solves problems for {args.user_name}.*
+
+---
+
+## 🎯 Substantive Focus Areas & Priorities
+1. **Core Deliverables & Projects**: Track highest-leverage milestones and unblock dependencies.
+2. **Personal & Family Friction Reduction**: Anticipate upcoming travel, household maintenance, and renewals.
+3. **Wealth & Asset Allocation**: Maintain visibility over financial targets, cash buffers, and milestones.
+
+---
+
+## ⚖️ Proactive Problem-Solving & Decision Boundaries
+- **Autonomous Actions**: Continuously sync cache, monitor tickers/emails/calendars, and set background timers.
+- **Proactive Proposals**: Always draft proposed solutions (cards, emails, schedule blocks) and prompt for confirmation before executing writes.
+"""
+        if args.dry_run:
+            print(f"[DRY RUN] Write: {user_prefs_file}")
+        else:
+            with open(user_prefs_file, "w", encoding="utf-8") as f:
+                f.write(prefs_content)
+            print(f"🧠 Generated User Priorities: cache/preferences/user_preferences.md")
+
+    decisions_log_file = target_dir / "cache" / "preferences" / "decisions_log.md"
+    if not decisions_log_file.exists():
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        decisions_content = f"""# 📝 Future Notes & Strategic Decisions Log
+
+## {today_str}
+- **Chief of Staff Initialized**: Scaffolding complete for {args.user_name} with local cache first and domain subagents ({', '.join(domains)}).
+"""
+        if args.dry_run:
+            print(f"[DRY RUN] Write: {decisions_log_file}")
+        else:
+            with open(decisions_log_file, "w", encoding="utf-8") as f:
+                f.write(decisions_content)
+            print(f"📝 Generated Decisions Log: cache/preferences/decisions_log.md")
+
+    # 3. Subagents
     for domain in domains:
         subagent_file = target_dir / ".agents" / "subagents" / f"{domain}.md"
         subagent_content = generate_subagent_md(domain)
@@ -277,7 +367,7 @@ def main():
                 f.write(subagent_content)
             print(f"🤖 Generated Subagent: .agents/subagents/{domain}.md")
 
-    # 3. .env.example
+    # 4. .env.example
     env_example_file = target_dir / ".env.example"
     env_content = generate_env_example(sources)
     if args.dry_run:
@@ -287,7 +377,7 @@ def main():
             f.write(env_content)
         print(f"⚙️ Generated Environment Template: .env.example")
 
-    # 4. Cache Placeholders & Summary Stubs
+    # 5. Cache Placeholders & Summary Stubs
     for s in sources:
         summary_stub = target_dir / "cache" / s / "summary.md"
         if not summary_stub.exists():
@@ -301,9 +391,10 @@ def main():
     print("-" * 50)
     print("✨ AI Chief of Staff Scaffolding Complete!")
     print("\nNext Steps:")
-    print("1. Copy `.env.example` to `.env` and fill in your API tokens.")
-    print("2. Run your source sync adapters to populate `cache/`.")
-    print("3. Start conversing with Antigravity as your Master Chief of Staff!")
+    print("1. Seed `cache/preferences/proactive_radar.md` with your top focus topics.")
+    print("2. Copy `.env.example` to `.env` and fill in your API tokens.")
+    print("3. Run your source sync adapters to populate `cache/`.")
+    print("4. Start conversing with Antigravity as your Master Chief of Staff!")
 
 if __name__ == "__main__":
     main()

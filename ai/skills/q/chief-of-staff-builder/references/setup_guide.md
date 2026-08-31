@@ -1,6 +1,6 @@
 # 🛠️ Chief of Staff Interactive Setup & Calibration Guide
 
-This guide details the complete 4-phase onboarding workflow for setting up a Chief of Staff system from scratch, connecting data feeds, and testing subagents before going live.
+This guide details the complete 5-phase onboarding workflow for setting up a Chief of Staff system from scratch, connecting data feeds, setting up the proactive radar, and testing subagents before going live.
 
 ---
 
@@ -14,11 +14,11 @@ Before writing code or syncing APIs, clarify the principal's operating style, pa
    - *Professional Ops*: OKRs, meeting prep, career logging, sprint deliverables, stakeholder updates.
    - *Wealth & Assets*: Net worth tracking, cashflow models, real estate, equity/RSUs.
    - *Strategic Sandbox*: Venture ideation, technical RFCs, side projects.
-2. **Delegation Authority**:
+2. **Substantive Priorities**:
+   - What are the top 3-5 specific topics, projects, or recurring problems you want the Chief of Staff to watch over and solve ahead of time?
+3. **Delegation Authority**:
    - How much should the Chief of Staff do automatically vs. draft for confirmation?
-   - *Recommended*: Read/analyze automatically; write/create with explicit confirmation.
-3. **Primary Task Tracker**:
-   - Notion databases, Markdown files, Apple Notes, Todoist, Linear, etc.
+   - *Recommended*: Read/monitor automatically; draft proposed solutions and prompt for confirmation before executing writes.
 
 ---
 
@@ -66,7 +66,24 @@ Walk through connecting and testing each source one by one.
 
 ---
 
-## 🧪 Phase 3: Testing & Calibrating Subagents
+## 🎯 Phase 3: Proactive Radar, Content Memory & Scheduling
+
+Set up proactive intelligence so the Chief of Staff continuously monitors and solves problems ahead of time:
+
+1. **Populate Proactive Radar (`cache/preferences/proactive_radar.md`)**:
+   - Active inquiries and topics requested by the user.
+   - Specific data sources and trigger conditions to monitor.
+   - Proactive problem-solving queue (unblocking stalled tasks, upcoming renewals, travel progressions).
+2. **Define Substantive Boundaries (`cache/preferences/user_preferences.md`)**:
+   - Core financial targets, domain priority stack, autonomous action boundaries.
+3. **Seed Future Notes Log (`cache/preferences/decisions_log.md`)**:
+   - Log founding architecture choices, current quarterly goals, and active commitments.
+4. **Configure Proactive Schedulers**:
+   - Set up scheduled triggers using the `schedule` tool (e.g. morning briefings, follow-up timers).
+
+---
+
+## 🧪 Phase 4: Testing & Calibrating Subagents
 
 Before relying on subagents for daily work, calibrate each subagent individually.
 
@@ -92,16 +109,19 @@ Execute a test query for each domain subagent to verify reasoning and data extra
 
 ---
 
-## 🏁 Phase 4: Activating Executive Operating Rhythms
+## 🏁 Phase 5: Activating Executive Operating Rhythms
 
 Once data sources and subagents pass calibration, test the full system operating loop:
 
 1. **Test the Morning Briefing**:
    - Ask the Master Chief of Staff: *"Give me my morning executive briefing."*
-   - Verify that it combines calendar, emails, and top priority tasks in <60 seconds of reading.
+   - Verify that it combines calendar, emails, top priority tasks, and proactive radar updates in <60 seconds of reading.
 2. **Test Thought Partnering (Braindump -> Task)**:
    - Provide a raw 3-sentence braindump: *"Need to get new tires on the SUV, review the Q3 cloud budget spreadsheet with Sarah, and follow up with the plumber about the leak."*
    - Verify the Chief of Staff structures these into distinct items, routes them to correct databases/domains, and asks to create cards.
-3. **Test Writeback Execution**:
+3. **Test Proactive Problem-Solving & Scheduling**:
+   - Ask the Chief of Staff: *"What is on your proactive radar and what solutions are you preparing?"*
+   - Verify it lists the tracked focus areas and proposes concrete next steps without prompting.
+4. **Test Writeback Execution**:
    - Approve card creation: *"Yes, create those cards."*
    - Verify the tool executes `notion_cli.py add ...` and returns confirmed card IDs.

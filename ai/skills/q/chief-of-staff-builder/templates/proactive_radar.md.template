@@ -1,0 +1,24 @@
+# 🎯 Proactive Radar & Substantive Content Tracking
+<!-- Place in cache/preferences/proactive_radar.md -->
+
+*Maintained continuously by the Chief of Staff to track the specific topics, projects, inquiries, and problems {{USER_NAME}} requests. The Chief of Staff monitors these areas and proactively surfaces updates, resolutions, and next steps before being asked.*
+
+---
+
+## 📡 Active Inquiries & Topics on the Radar
+
+| Topic / Entity | What {{USER_NAME}} Requests / Cares About | Proactive Trigger & Monitored Source | Status / Next Proactive Step |
+| :--- | :--- | :--- | :--- |
+| **{{EXAMPLE_TOPIC_1}}** | {{EXAMPLE_WHAT_IS_REQUESTED_1}} | {{EXAMPLE_TRIGGER_AND_SOURCE_1}} | {{EXAMPLE_NEXT_STEP_1}} |
+| **{{EXAMPLE_TOPIC_2}}** | {{EXAMPLE_WHAT_IS_REQUESTED_2}} | {{EXAMPLE_TRIGGER_AND_SOURCE_2}} | {{EXAMPLE_NEXT_STEP_2}} |
+
+---
+
+## 🔍 Proactive Problem-Solving Queue (Solving Ahead of Time)
+
+1. **Stale / Lingering Blockers in Task Queue**:
+   - *Behavior*: When a priority card has stayed in `Doing` without progress, diagnose why (e.g. waiting on external input, blocked dependency) and propose 2 concrete resolution options.
+2. **Upcoming Expirations, Deadlines & Logistics**:
+   - *Behavior*: Audit recurring commitments, renewals, and travel dates 14–30 days out; proactively draft the itinerary, booking options, or renewal actions.
+3. **Cross-Domain Opportunity Identification**:
+   - *Behavior*: When notes or emails surface new context (e.g. schedule shifts, financial signals, career milestones), proactively alert the relevant domain subagent to model next steps.

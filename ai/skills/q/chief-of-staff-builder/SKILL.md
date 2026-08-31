@@ -4,25 +4,27 @@ description: >-
   Architect, scaffold, and operate an AI Chief of Staff (CoS) system.
   Use when designing or configuring an executive assistant, integrating heterogeneous data sources
   (Notion, Google Workspace, Calendars, Email, Financials, Chat/Voice logs) into local caches,
+  tracking substantive user requests & proactive radars, scheduling background tasks,
   orchestrating master composer prompts and domain subagents (Personal, Professional, Wealth, Operator),
   and building executive operating rhythms (Daily Briefings, Braindump Triage, Weekly Reviews, GenUI Dashboards).
 ---
 
 # 🏛️ AI Chief of Staff (CoS) Builder & Operating Skill
 
-This skill provides an end-to-end blueprint, interactive setup walkthrough, and automation toolkit to build, customize, and operate an **AI Chief of Staff (CoS)** for an individual executive, founder, or power user.
+This skill provides an end-to-end blueprint, interactive setup walkthrough, proactive need-tracking system, and automation toolkit to build, customize, and operate an **AI Chief of Staff (CoS)** for an individual executive, founder, or power user.
 
 ---
 
 ## 🎯 How to Guide the User Through Setup (Interactive Protocol)
 
-When a user asks to set up, build, or calibrate a Chief of Staff, walk them through the **4-Phase Setup Protocol**:
+When a user asks to set up, build, or calibrate a Chief of Staff, walk them through the **5-Phase Setup Protocol**:
 
 ```mermaid
 graph LR
     P1[1. Purpose & Scope] --> P2[2. Ingest Sources]
-    P2 --> P3[3. Calibrate Subagents]
-    P3 --> P4[4. Live Operating Cadence]
+    P2 --> P3[3. Proactive Radar & Content Tracking]
+    P3 --> P4[4. Calibrate Subagents]
+    P4 --> P5[5. Live Operating Cadence]
 ```
 
 ### Phase 1: Purpose & Domain Discovery
@@ -37,16 +39,27 @@ Step-by-step connection and live verification:
 2. **Google Workspace**: Place `credentials.json`, run `python3 google_sync.py`, verify `cache/google/calendars/` and `cache/google/email/`.
 3. **Financial / Plaid / Notes**: Set up API tokens or local file drops, verify normalized cache.
 
-### Phase 3: Subagent Calibration & Testing
+### Phase 3: Establishing the Proactive Radar & Content Memory
+1. Establish `cache/preferences/proactive_radar.md`:
+   - Specific entities, deals, travel plans, tickers, or projects the user cares about.
+   - Proactive triggers & background sources to monitor.
+   - Proactive problem-solving queue (solving ahead of time).
+2. Establish `cache/preferences/user_preferences.md`:
+   - Core substantive priorities (wealth targets, operational boundaries, decision criteria).
+3. Initialize `cache/preferences/decisions_log.md` for permanent future notes.
+4. Configure proactive scheduling triggers (morning briefing alarms, recurring review cron, one-shot timers via `schedule` tool).
+
+### Phase 4: Subagent Calibration & Testing
 Verify subagent readiness before going live:
 1. Run `python3 .agents/skills/chief-of-staff-builder/scripts/test_subagents.py` to audit data source coverage.
 2. Run domain-specific calibration test queries (e.g. asking `operator` for daily triage, `wealth` for liquidity posture, `professional_ops` for OKR blockers).
 
-### Phase 4: Activating Executive Operating Rhythms
+### Phase 5: Activating Executive Operating Rhythms
 Test the live operational loops:
-1. **The 5-Minute Morning Briefing**: Schedule + Top 3 Must-Dos + Friction alerts.
+1. **The 5-Minute Morning Briefing**: Schedule + Top 3 Must-Dos + Proactive Radar updates.
 2. **Thought-Partnering (Braindump -> Cards)**: Structure messy text into actionable task cards.
-3. **Weekly Recalibration**: Cross-domain scorecard and Kanban roadmap.
+3. **Proactive Problem Solving**: When a blocker, deadline, or opportunity is identified, proactively draft and propose the solution.
+4. **Weekly Recalibration**: Cross-domain scorecard, radar health, and Kanban roadmap.
 
 For the full detailed checklist, refer to [Interactive Setup & Calibration Guide](./references/setup_guide.md).
 
@@ -55,7 +68,7 @@ For the full detailed checklist, refer to [Interactive Setup & Calibration Guide
 ## 🚀 Scaffolding & Diagnostics CLI Reference
 
 ```bash
-# 1. Scaffold a full CoS setup in any directory
+# 1. Scaffold a full CoS setup in any directory (with proactive radar & subagents)
 python3 .agents/skills/chief-of-staff-builder/scripts/scaffold_cos.py \
   --target /path/to/workspace \
   --user-name "Alex" \
@@ -71,13 +84,20 @@ python3 .agents/skills/chief-of-staff-builder/scripts/healthcheck.py
 
 ---
 
-## 📐 The 4-Layer Architecture
+## 📐 The 5-Layer Architecture
 
 ```mermaid
 graph TD
-    User([Principal / User]) <-->|Converse & Triage| Orchestrator[Master Chief of Staff Composer]
+    User([Principal / User]) <-->|Converse & Request Content| Orchestrator[Master Chief of Staff Composer]
     
-    subgraph "1. Ingestion & Cache (Local-First)"
+    subgraph "1. Proactive Radar & Content Memory"
+        Orchestrator <-->|Track Inquiries & Needs| Radar[cache/preferences/proactive_radar.md]
+        Orchestrator <-->|Priorities & Bounds| Prefs[cache/preferences/user_preferences.md]
+        Orchestrator <-->|Record Decisions| DecLog[cache/preferences/decisions_log.md]
+        Orchestrator -->|Timers & Cron| Sched[schedule Tool / Reminders]
+    end
+
+    subgraph "2. Ingestion & Cache (Local-First)"
         S_Notion[Notion / Task DBs] -->|Sync| C_Notion[cache/notion/]
         S_Google[Google Cal / Gmail / Sheets] -->|Sync| C_Google[cache/google/]
         S_Chat[Gemini / Spark / Voice Dumps] -->|Distill| C_Distill[cache/distills/]
@@ -85,7 +105,7 @@ graph TD
         S_Notes[Apple Notes / Local Markdown] -->|Ingest| C_Notes[cache/notes/]
     end
 
-    subgraph "2. Orchestrator & Subagents"
+    subgraph "3. Orchestrator & Subagents"
         Orchestrator --> DistillAgent[Distill Engine Agent]
         Orchestrator --> OperatorAgent[Operator Subagent Personal & Execution]
         Orchestrator --> CareerAgent[Career & Projects Subagent]
@@ -93,8 +113,9 @@ graph TD
         Orchestrator --> CustomAgents[...]
     end
 
-    subgraph "3. Executive Workflows"
+    subgraph "4. Executive Workflows"
         Orchestrator --> MorningBriefing[5-Min Morning Briefing]
+        Orchestrator --> ProactiveSolving[Proactive Problem Solving Ahead of Time]
         Orchestrator --> ThoughtPartner[Braindump-to-Card Distiller]
         Orchestrator --> TwoWaySync[Two-Way Action Engine CLI/MCP]
         Orchestrator --> GenUI[Interactive Kanban & Roadmap]
@@ -109,6 +130,7 @@ graph TD
 ## 📚 Deep-Dive References
 
 - [Interactive Setup & Calibration Guide](./references/setup_guide.md): Step-by-step onboarding walkthrough, connection checks, and test prompts.
+- [Proactive Need Tracking & Scheduling Guide](./references/preferences_and_scheduling.md): Proactive radar, content tracking schemas, and autonomous problem-solving routines.
 - [Architecture & Design Principles](./references/architecture.md): Local cache mechanics, MCP vs CLI, and security boundaries.
 - [Ingestion Patterns & Connectors](./references/ingestion_patterns.md): Connector blueprints for Notion, Google, Apple Notes, Plaid, and Transcripts.
 - [Executive Workflows & Operating Rhythms](./references/executive_workflows.md): Daily briefings, braindump distillation, weekly reviews, and GenUI boards.

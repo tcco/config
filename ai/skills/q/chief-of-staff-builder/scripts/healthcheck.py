@@ -5,8 +5,10 @@ Chief of Staff Healthcheck & Diagnostic Tool
 Audits:
 1. Master Composer configuration (AGENTS.md)
 2. Domain Subagent markdown definitions (.agents/subagents/*.md)
-3. Local Cache freshness and entity counts (cache/*)
-4. Environment & integration readiness (.env)
+3. Proactive Radar & Content Tracking (cache/preferences/proactive_radar.md)
+4. Executive Priorities & Decisions Log (cache/preferences/*)
+5. Local Cache freshness and entity counts (cache/*)
+6. Environment & integration readiness (.env)
 """
 
 import os
@@ -44,7 +46,27 @@ def main():
     else:
         issues.append("Missing AGENTS.md at workspace root (Master Composer prompt)")
 
-    # 2. Check Subagents
+    # 2. Check Proactive Radar & Preferences
+    radar_file = root / "cache" / "preferences" / "proactive_radar.md"
+    prefs_file = root / "cache" / "preferences" / "user_preferences.md"
+    decisions_file = root / "cache" / "preferences" / "decisions_log.md"
+
+    if radar_file.exists() and radar_file.stat().st_size > 0:
+        successes.append(f"Proactive Radar active: cache/preferences/proactive_radar.md ({radar_file.stat().st_size} bytes)")
+    else:
+        warnings.append("Missing or empty cache/preferences/proactive_radar.md (Proactive Content Radar)")
+
+    if prefs_file.exists() and prefs_file.stat().st_size > 0:
+        successes.append(f"User Priorities active: cache/preferences/user_preferences.md ({prefs_file.stat().st_size} bytes)")
+    else:
+        warnings.append("Missing or empty cache/preferences/user_preferences.md")
+
+    if decisions_file.exists() and decisions_file.stat().st_size > 0:
+        successes.append(f"Decisions Log active: cache/preferences/decisions_log.md ({decisions_file.stat().st_size} bytes)")
+    else:
+        warnings.append("Missing or empty cache/preferences/decisions_log.md")
+
+    # 3. Check Subagents
     subagents_dir = root / ".agents" / "subagents"
     if subagents_dir.exists():
         subagents = list(subagents_dir.glob("*.md"))
@@ -62,7 +84,7 @@ def main():
     else:
         warnings.append("No .agents/subagents/ directory found.")
 
-    # 3. Check Cache
+    # 4. Check Cache
     cache_dir = root / "cache"
     if cache_dir.exists():
         subdirs = [d for d in cache_dir.iterdir() if d.is_dir()]
@@ -93,7 +115,7 @@ def main():
     else:
         issues.append("Missing cache/ directory. Run sync adapters to initialize.")
 
-    # 4. Check Environment & Tokens
+    # 5. Check Environment & Tokens
     env_path = root / ".env"
     if env_path.exists():
         env_vars = load_env(env_path)

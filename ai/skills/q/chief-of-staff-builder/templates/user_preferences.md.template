@@ -1,0 +1,32 @@
+# 🧠 User Preferences & Operating Rules
+<!-- Place in cache/preferences/user_preferences.md -->
+
+*This file stores persistent user preferences, working habits, communication guidelines, and operational constraints across sessions.*
+
+---
+
+## 🗣️ Communication & Formatting Preferences
+- **Tone**: {{TONE_PREFERENCE}} (e.g. Concise executive partner, direct, high-signal, zero fluff)
+- **Visuals**: {{VISUAL_PREFERENCE}} (e.g. Markdown Kanban tables, Mermaid Gantt diagrams, GenUI cards)
+- **Briefings**: {{BRIEFING_PREFERENCE}} (e.g. 60-second summary: Schedule $\rightarrow$ Top 3 Priorities $\rightarrow$ Urgent Alerts)
+
+---
+
+## ⚡ Operational & Task Constraints
+- **Card Updates**: {{CARD_CONFIRMATION_RULE}} (e.g. Read cache automatically; prompt before creating or modifying cards)
+- **Focus Batching**: {{MAX_DAILY_PRIORITIES}} (e.g. Max 3 must-do focus priorities per day)
+- **Calendar Time-Blocking**: {{CALENDAR_TIME_BLOCK_RULE}} (e.g. Protect morning deep-work blocks before 1 PM)
+
+---
+
+## 💼 Domain-Specific Preferences
+- **Professional / Projects**: {{PROFESSIONAL_PREFERENCES}}
+- **Personal / Household**: {{PERSONAL_PREFERENCES}}
+- **Wealth / Financial**: {{FINANCIAL_PREFERENCES}}
+
+---
+
+## 🗓️ Scheduled Routines & Follow-Up Rules
+- **Daily Briefing Trigger**: {{MORNING_BRIEFING_TIME}} (e.g. Weekdays 8:30 AM)
+- **Weekly Review Trigger**: {{WEEKLY_REVIEW_TIME}} (e.g. Fridays 4:00 PM)
+- **Proactive Scheduling**: Automatically create one-shot timers, cron schedules, or Notion reminder cards whenever a follow-up or recurring cadence is requested.
