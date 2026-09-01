@@ -11,6 +11,7 @@ Skills are organized into domain-specific subdirectories for modularity and clar
 ```
 ai/skills/
 ├── fynnai/                     # Quantitative trading & portfolio intelligence
+│   ├── finance-watchlist-sync/
 │   ├── fundamental-quant-evaluator/
 │   ├── macro-regime-analyst/
 │   ├── portfolio-orchestrator/
@@ -30,6 +31,7 @@ ai/skills/
 
 | Skill | Description |
 | :--- | :--- |
+| **`finance-watchlist-sync`** | Automates cross-platform watchlist synchronization across Robinhood, Seeking Alpha, Google Finance Beta, and external finance dashboards using browser automation and AppleScript DOM drivers. |
 | **`fundamental-quant-evaluator`** | Generates earnings report cards, Seeking Alpha 5-Factor Quant scores (A+ to F), 5 Lifecycle Archetype classifications (AOTG framework), and 3-Year Base/Bull/Bear price projections with annual CAGR. |
 | **`macro-regime-analyst`** | Ingests macroeconomic telemetry (VIX, CPI/PCE, Fed Funds Rate, Treasury Yield Curves $2\text{Y}/10\text{Y}/30\text{Y}$, Jobs, ISM) and classifies market environment regimes. |
 | **`portfolio-orchestrator`** | Central orchestrator managing multi-agent pipeline fan-out, multi-dimensional distributions, watchlist onboarding, capital displacement, and retrospective signal audit logging ($T+30, T+90, T+180$). |
