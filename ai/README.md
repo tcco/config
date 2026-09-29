@@ -19,8 +19,10 @@ ai/skills/
 │   └── technical-chart-analyst/
 ├── mac/                        # macOS system maintenance & storage health
 │   └── mac-disk-maintenance/
-└── q/                          # Executive Operating System & Chief of Staff
-    └── chief-of-staff-builder/
+├── q/                          # Executive Operating System & Chief of Staff
+│   └── chief-of-staff-builder/
+└── writing/                    # Writing style guides & content workflows
+    └── tim-blog-writing-style/
 ```
 
 ---
@@ -53,6 +55,14 @@ ai/skills/
 | Skill | Description |
 | :--- | :--- |
 | **`chief-of-staff-builder`** | Architect, scaffold, and operate an AI Chief of Staff (CoS) system. Includes scaffolding CLI (`scripts/scaffold_cos.py`), diagnostic testing (`scripts/test_subagents.py`), architecture guides, and domain templates (Personal, Professional, Wealth, Operator). |
+
+---
+
+### 4. ✍️ `writing/` (Writing & Content Workflows)
+
+| Skill | Description |
+| :--- | :--- |
+| **`tim-blog-writing-style`** | Style guide for drafting personal essays, technical teardowns, and builder reflections for timchi.co in Tim's authentic voice. Enforces clean syntax without em dashes, minimal parentheses, zero AI buzzwords or hype, and the `//=//=//=//` album delimiter. |
 
 ---
 
