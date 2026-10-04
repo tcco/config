@@ -15,6 +15,7 @@ ai/skills/
 │   ├── fundamental-quant-evaluator/
 │   ├── macro-regime-analyst/
 │   ├── portfolio-orchestrator/
+│   ├── portfolio-rebalance-strategy/
 │   ├── social-sentiment-scanner/
 │   └── technical-chart-analyst/
 ├── mac/                        # macOS system maintenance & storage health
@@ -37,6 +38,7 @@ ai/skills/
 | **`fundamental-quant-evaluator`** | Generates earnings report cards, Seeking Alpha 5-Factor Quant scores (A+ to F), 5 Lifecycle Archetype classifications (AOTG framework), and 3-Year Base/Bull/Bear price projections with annual CAGR. |
 | **`macro-regime-analyst`** | Ingests macroeconomic telemetry (VIX, CPI/PCE, Fed Funds Rate, Treasury Yield Curves $2\text{Y}/10\text{Y}/30\text{Y}$, Jobs, ISM) and classifies market environment regimes. |
 | **`portfolio-orchestrator`** | Central orchestrator managing multi-agent pipeline fan-out, multi-dimensional distributions, watchlist onboarding, capital displacement, and retrospective signal audit logging ($T+30, T+90, T+180$). |
+| **`portfolio-rebalance-strategy`** | Cross-references active Equity Half and Quarterly strategy cards, monthly rebalancing checklists, and live Fynn AI quantitative indicators (33 FVB daily baseline, BX Trenders, multi-year DCFs) to generate tactical rebalancing briefings and execution roadmaps. |
 | **`social-sentiment-scanner`** | Evaluates retail and developer psychology from Discord channels, X (FinTwit), and YouTube transcripts. |
 | **`technical-chart-analyst`** | Evaluates stock tickers using the 33 Fair Value Band (33 FVB EMA) and Multi-Timeframe BX Trender momentum histograms across a 4-zone posture model. |
 
